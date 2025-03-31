@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+	<head>
+		<meta charset=UTF-8>
+		<title>Gestionnaire de personnages</title>
+		<link rel="icon" href="/static/images/star.ico">
+		<link rel="stylesheet" href="/static/styles/style_modal.css">
+		<style>
+			input#username, input#password { width: 200px; }
+		</style>
+	</head>
+
+	<body>
+		<div id="content">
+		
+			<h1>Connexion</h1>
+			
+			<button onclick="window.location.href='/';" id="close">
+				<img src="/static/images/cross.ico" alt="Croix">
+			</button>
+			
+			<form action="/login" method="post">
+				<div>
+					<label for="username">Nom d'utilisateur : </label>
+					<input type="text" name="username" id="username" required>
+				</div>
+				<div>
+					<label for="password">Mot de passe : </label>
+					<input type="password" name="password" id="password" required>
+				</div>
+				<input type="submit" value="Se connecter" id="submit_button">
+			</form>
+			
+			<button onclick="window.location.href='/new-user';" id="new_user">
+				Nouvel utilisateur
+			</button>
+		
+		</div>
+	</body>
+
+</html>

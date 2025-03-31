@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+	<head>
+		<meta charset=UTF-8>
+		<title>Inscription</title>
+		<link rel="icon" href="../../res/icons/logo.ico">
+		<link rel="stylesheet" href="../styles/window_style.css">
+	</head>
+
+	<body>
+		<div id="window">
+		
+			<h1 id="title">Nouvel utilisateur</h1>
+
+			<form action="/signup" method="post">
+				<div class="field">
+					<label for="username">Nom d'utilisateur : </label>
+					<input type="text" id="username" name="username" required>
+				</div>
+				<div class="field">
+					<label for="email">Adresse email : </label>
+					<input type="text" id="email" name="email" required>
+				</div>
+				<div class="field">
+					<label for="password">Mot de passe : </label>
+					<input type="password" id="password" name="password" required>
+				</div>
+				<div id="visibility" class="field">
+					<span>Visibilité du compte :</span>
+					<div>
+						<div class="choice">
+							<input type="radio" name="visibility" value="Privé" id="private" required>
+							<label for="private">Privé</label>
+						</div>
+						<div class="choice">
+							<input type="radio" name="visibility" value="Public" id="public" required>
+							<label for="public">Public</label>
+						</div>
+					</div>
+				</div>
+				<input type="submit" id="submit_button" value="Créer le compte">
+			</form>
+		
+		</div>
+	</body>
+
+</html>
