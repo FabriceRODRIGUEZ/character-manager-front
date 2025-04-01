@@ -12,7 +12,8 @@ div#window {
 	transform: translate(-50%, -50%);
 	width: max-content;
 	padding: 15px 20px 20px;
-	border: 3px solid black;
+	border: 2px solid black;
+	box-shadow: 0 0 5px black;
 	border-radius: 10px;
 	background-color: floralwhite;
 }
@@ -28,31 +29,65 @@ form {
 	display: flex;
 	margin-top: 20px;
 	flex-direction: column;
-	gap: 10px;
-	border: 2px solid black;
+	align-items: center;
 }
 
 div.field {
 	display: flex;
+	margin-bottom: 15px;
 	flex-direction: column;
-	border: 2px solid red;
+	align-items: center;
+	gap: 5px;
 }
 
-label, span {
+div.field > label,
+div.field > span {
+	display: block;
+	width: max-content;
 	font-weight: bold;
 	cursor: default;
-	border: 2px solid black;
+}
+
+div#visibility_field > div {
+	display: flex;
+	gap: 20px;
 }
 
 div.choice {
-	border: 2px solid black;
+	display: flex;
+	align-items: center;
 }
 
-input#submit_button {
-	margin-top: 10px;
-	margin-left: 50%;
-	transform: translate(-50%, 0);
-	padding: 5px 10px;
+input[type="text"], input[type="password"] {
+	width: 300px;
+	border: 1px solid grey;
+}
+
+input[type="radio"] {
+	margin-left: 0px;
+}
+
+input[type="radio"]:checked {
+	accent-color: black;
+}
+
+input[type="radio"]:hover {
+	cursor: pointer;
+}
+
+a#forgotten_password {
+	display: block;
+	margin: 5px 0;
+	width: max-content;
+	color: sienna;
+}
+
+/* input#submit_button */
+button#submit_button,
+button#new_user {
+	margin-top: 5px;
+	padding: 5px 20px;
+	width: max-content;
 	font-family: "Times New Roman", serif;
 	font-weight: bold;
 	border: 2px solid black;
@@ -60,17 +95,20 @@ input#submit_button {
 	background-color: burlywood;
 }
 
-input#submit_button:hover {
-	background-color: grey;
+/* input#submit_button:hover */
+button#submit_button:hover {
 	cursor: pointer;
+	background-color: #D3A05F;
 }
 
-input[type="text"], input[type="password"] { border: 1px solid grey; }
+button#new_user {
+	margin-top: 10px;
+	margin-left: 50%;
+	transform: translate(-50%, 0);
+	background-color: #F6E9D6;
+}
 
-
-/* form div { margin: 10px 0; } */
-/* input[type="text"] { width: 300px; }
-input#first_name, input#last_name { width: 200px; }
-input[type="radio"] { margin-left: 15px; }
-input[type="radio"]:checked { accent-color: black; }
-label[for="man"], label[for="woman"] { font-weight: normal; } */
+button#new_user:hover {
+	cursor: pointer;
+	background-color: #EDD3AC;
+}

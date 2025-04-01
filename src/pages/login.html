@@ -3,39 +3,43 @@
 
 	<head>
 		<meta charset=UTF-8>
-		<title>Gestionnaire de personnages</title>
-		<link rel="icon" href="/static/images/star.ico">
-		<link rel="stylesheet" href="/static/styles/style_modal.css">
-		<style>
-			input#username, input#password { width: 200px; }
-		</style>
+		<title>Connexion</title>
+		<link rel="icon" href="../../res/icons/logo.ico">
+		<link rel="stylesheet" href="../styles/window_style.css">
+		<script type="module" src="../app/controllers/login_controller.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 
 	<body>
-		<div id="content">
-		
-			<h1>Connexion</h1>
-			
-			<button onclick="window.location.href='/';" id="close">
-				<img src="/static/images/cross.ico" alt="Croix">
-			</button>
-			
-			<form action="/login" method="post">
-				<div>
-					<label for="username">Nom d'utilisateur : </label>
-					<input type="text" name="username" id="username" required>
+		<div id="window">
+
+			<h1 id="title">Connexion</h1>
+
+			<form>
+				<div class="field">
+					<label for="user_id">Nom d'utilisateur ou adresse email :</label>
+					<input type="text" id="user_id" name="user_id" required>
 				</div>
-				<div>
-					<label for="password">Mot de passe : </label>
-					<input type="password" name="password" id="password" required>
+
+				<div class="field">
+					<label for="password">Mot de passe :</label>
+					<input type="password" id="password" name="password" required>
 				</div>
-				<input type="submit" value="Se connecter" id="submit_button">
+
+				<a id="forgotten_password" href="./forgotten-password.html">
+					Mot de passe oublié
+				</a>
+
+				<button id="submit_button" onclick="loginController.login()">
+					Créer le compte
+				</button>
+				<!-- <input type="submit" id="submit_button" value="Se connecter"> -->
 			</form>
-			
-			<button onclick="window.location.href='/new-user';" id="new_user">
+
+			<button id="new_user" onclick="location.href='./signup.html'">
 				Nouvel utilisateur
 			</button>
-		
+
 		</div>
 	</body>
 

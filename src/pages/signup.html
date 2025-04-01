@@ -6,31 +6,36 @@
 		<title>Inscription</title>
 		<link rel="icon" href="../../res/icons/logo.ico">
 		<link rel="stylesheet" href="../styles/window_style.css">
+		<script type="module" src="../app/controllers/signup_controller.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 
 	<body>
 		<div id="window">
-		
+
 			<h1 id="title">Nouvel utilisateur</h1>
 
-			<form action="/signup" method="post">
+			<form>
 				<div class="field">
-					<label for="username">Nom d'utilisateur : </label>
+					<label for="username">Nom d'utilisateur :</label>
 					<input type="text" id="username" name="username" required>
 				</div>
+
 				<div class="field">
-					<label for="email">Adresse email : </label>
+					<label for="email">Adresse email :</label>
 					<input type="text" id="email" name="email" required>
 				</div>
+
 				<div class="field">
-					<label for="password">Mot de passe : </label>
+					<label for="password">Mot de passe :</label>
 					<input type="password" id="password" name="password" required>
 				</div>
-				<div id="visibility" class="field">
+
+				<div id="visibility_field" class="field">
 					<span>Visibilité du compte :</span>
 					<div>
 						<div class="choice">
-							<input type="radio" name="visibility" value="Privé" id="private" required>
+							<input type="radio" name="visibility" value="Privé" id="private" checked required>
 							<label for="private">Privé</label>
 						</div>
 						<div class="choice">
@@ -39,9 +44,13 @@
 						</div>
 					</div>
 				</div>
-				<input type="submit" id="submit_button" value="Créer le compte">
+
+				<button id="submit_button" onclick="signupController.signup()">
+					Créer le compte
+				</button>
+				<!-- <input type="submit" id="submit_button" value="Créer le compte"> -->
 			</form>
-		
+
 		</div>
 	</body>
 
