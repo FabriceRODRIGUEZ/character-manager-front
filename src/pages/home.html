@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+	<head>
+		<meta charset=UTF-8>
+		<title>Gestionnaire de personnages</title>
+		<link rel="icon" href="../../res/icons/logo.ico">
+		<link rel="stylesheet" href="../styles/home_style.css">
+		<script type="module" src="../app/controllers/home_controller.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+
+	<body>
+	
+		<nav id="header">
+			<button id="add_button">
+				<img src="../../res/icons/plus.ico" alt="Plus">
+			</button>
+
+			<button id="filter_button">
+				Filtrer
+			</button>
+
+			<div id="sort_section">
+				<select name="sort_property">
+					<option value="first_name" selected>Prénom</option>
+					<option value="last_name">Nom de famille</option>
+					<option value="work">Œuvre</option>
+					<option value="actor">Acteur</option>
+					<option value="voice_actor">Doubleur</option>
+					<option value="appreciation">Appréciation</option>
+				</select>
+				<select name="sort_order">
+					<option value="ascendant">Ascendant</option>
+					<option value="descendant">Descendant</option>
+			</select>
+			</div>
+
+			<div id="login_section">
+				<button id="search_button">
+					Listes publiques
+				</button>
+
+				<button id="login_button">
+					Connexion
+				</button>
+			</div>
+		</nav>
+
+		<div id="message">
+			Veuillez vous connecter ou rechercher une liste publique
+		</div>
+
+		<footer></footer>
+	
+	</body>
+
+</html>
