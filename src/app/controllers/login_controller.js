@@ -6,15 +6,17 @@ class LoginController {
 
         // Vérifications
 
+        const data = { "user_id": user_id, "password": password }
         const response = await fetch("http://localhost:8080/login", {
             method: "POST",
-            headers: { "Content-Type" : "application/json"},
-            body: { "user_id" : user_id, "password" : password }
+            headers: { "Content-Type": "application/json"},
+            body: JSON.stringify(data)
         })
 
         // Erreur
 
-        sessionStorage.setItem("token", response.token)
+        const body = await response.json()
+        sessionStorage.setItem("token", body.token)
 
         window.location.replace("../pages/home.html")
     }

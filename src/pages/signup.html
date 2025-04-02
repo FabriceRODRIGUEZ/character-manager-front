@@ -15,31 +15,31 @@
 
 			<h1 id="title">Nouvel utilisateur</h1>
 
-			<form>
+			<form onsubmit="return false">
 				<div class="field">
 					<label for="username">Nom d'utilisateur :</label>
-					<input type="text" id="username" name="username" required>
+					<input type="text" id="username" name="username" autocomplete="off" required>
 				</div>
 
 				<div class="field">
 					<label for="email">Adresse email :</label>
-					<input type="text" id="email" name="email" required>
+					<input type="text" id="email" name="email" autocomplete="off" required>
 				</div>
 
 				<div class="field">
 					<label for="password">Mot de passe :</label>
-					<input type="password" id="password" name="password" required>
+					<input type="password" id="password" name="password" autocomplete="off" required>
 				</div>
 
 				<div id="visibility_field" class="field">
 					<span>Visibilité du compte :</span>
 					<div>
 						<div class="choice">
-							<input type="radio" name="visibility" value="Privé" id="private" checked required>
+							<input type="radio" name="visibility" value="private" id="private" checked required>
 							<label for="private">Privé</label>
 						</div>
 						<div class="choice">
-							<input type="radio" name="visibility" value="Public" id="public" required>
+							<input type="radio" name="visibility" value="public" id="public" required>
 							<label for="public">Public</label>
 						</div>
 					</div>
@@ -48,7 +48,6 @@
 				<button id="submit_button" onclick="signupController.signup()">
 					Créer le compte
 				</button>
-				<!-- <input type="submit" id="submit_button" value="Créer le compte"> -->
 			</form>
 
 		</div>

@@ -15,15 +15,15 @@
 
 			<h1 id="title">Connexion</h1>
 
-			<form>
+			<form onsubmit="return false">
 				<div class="field">
 					<label for="user_id">Nom d'utilisateur ou adresse email :</label>
-					<input type="text" id="user_id" name="user_id" required>
+					<input type="text" id="user_id" name="user_id" autocomplete="off" required>
 				</div>
 
 				<div class="field">
 					<label for="password">Mot de passe :</label>
-					<input type="password" id="password" name="password" required>
+					<input type="password" id="password" name="password" autocomplete="off" required>
 				</div>
 
 				<a id="forgotten_password" href="./forgotten-password.html">
@@ -31,9 +31,8 @@
 				</a>
 
 				<button id="submit_button" onclick="loginController.login()">
-					Créer le compte
+					Se connecter
 				</button>
-				<!-- <input type="submit" id="submit_button" value="Se connecter"> -->
 			</form>
 
 			<button id="new_user" onclick="location.href='./signup.html'">

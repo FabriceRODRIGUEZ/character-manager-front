@@ -82,7 +82,6 @@ a#forgotten_password {
 	color: sienna;
 }
 
-/* input#submit_button */
 button#submit_button,
 button#new_user {
 	margin-top: 5px;
@@ -95,7 +94,6 @@ button#new_user {
 	background-color: burlywood;
 }
 
-/* input#submit_button:hover */
 button#submit_button:hover {
 	cursor: pointer;
 	background-color: #D3A05F;
