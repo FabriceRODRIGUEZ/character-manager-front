@@ -3,79 +3,210 @@ body {
 	background-color: burlywood;
 }
 
-nav#header {
+/* Menu : */
+
+nav {
 	display: flex;
 	position: fixed;
 	top: 0px;
 	width: 100vw;
-	padding: 10px 20px;
+	padding: 5px 10px;
 	justify-content: space-between;
-	border-bottom: 2px solid black;
-	box-shadow: 0 0 5px black;
+	align-items: center;
+	box-shadow: 0 0px 5px black;
 	background-color: sienna;
 	box-sizing: border-box;
 }
 
 button#add_button {
-	display: flex;
 	width: 40px;
 	height: 40px;
 	padding: 0px;
-	justify-content: center;
-	align-items: center;
 	border: 2px solid black;
 	border-radius: 10px;
-	background-color: floralwhite;
+	background-color: antiquewhite;
+}
+
+#add_button > .filter {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+	border-radius: 5px;
+	background-color: rgba(0, 0, 0, 0.5);
 }
 
 button#add_button img {
 	width: 60%;
-	height: auto;
+	height: 60%;
 }
 
-/* form, div#connexion {
+div#sort_section,
+div#login_section {
 	display: flex;
-	align-items: center;
+	height: min-content;
 	gap: 10px;
-} */
+}
 
-/* div#connexion {
-	width: 200px;
-	justify-content: right;
-	font-weight: bold;
-} */
-
-/* div#connexion button, input[type="submit"] {
-	cursor: pointer;
-	padding: 5px 10px;
+button#filter_button,
+button#search_button,
+button#login_button {
+	height: min-content;
+	padding: 0px;
 	font-weight: bold;
 	border: 2px solid black;
 	border-radius: 5px;
-	background-color: floralwhite;
-} */
+	background-color: antiquewhite;
+}
 
-/* select, input[type="text"] {
-	width: 100px;
-	border: 1px solid black;
-	background-color: floralwhite;
-} */
+div#sort_section > select {
+	padding: 2px;
+	font-weight: bold;
+	color: black;
+	border: 2px solid black;
+	border-radius: 5px;
+	background-color: #7d756b;
+}
 
-/* #filter_button, #sort_button, #login_button, #logout_button { padding: 5px 10px; } */
+#filter_button > .filter {
+	padding: 5px 10px;
+	border-radius: 3px;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+#search_button > .filter,
+#login_button > .filter {
+	padding: 5px 10px;
+	border-radius: 3px;
+}
+
+#search_button > .filter:hover,
+#login_button > .filter:hover {
+	background-color: rgba(0, 0, 0, 0.2);
+	cursor: pointer;
+}
+
+/* Characters : */
+
+div#characters_list {
+	visibility: hidden;
+	display: flex;
+	margin: 70px 20px 50px;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+/* div.character {
+	display: flex;
+	width: calc(50vw - 30px);
+	height: 20vh;
+	margin-bottom: 20px;
+	padding: 20px;
+	gap: 20px;
+	border: 2px solid black;
+	border-radius: 10px;
+	box-shadow: 0 0 5px black;
+	background-color: floralwhite;
+	box-sizing: border-box;
+}
+
+div.profile img {
+	height: calc(20vh - 44px);
+	width: calc(20vh - 44px);
+	object-fit: cover;
+	object-position: top;
+}
+
+div.description {
+	display: grid;
+	flex-grow: 1;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr;
+}
+
+div.property {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+}
+
+div.appreciation {
+	grid-column: 2;
+	grid-row: 2 / 4;
+	gap: 6px;
+}
+
+span.property_name {
+	font-weight: bold;
+	text-decoration: underline;
+	text-wrap: nowrap;
+}
+
+div.appreciation img {
+	width: 20px;
+	height: 20px;
+	vertical-align: middle;
+}
+
+div.hidden_buttons {
+	display: flex;
+	visibility: hidden;
+	flex-direction: column;
+	gap: 2px;
+}
+
+button.delete_button, button.edit_button {
+	width: 24px;
+	height: 24px;
+	padding: 4px;
+	border: none;
+	border-radius: 20%;
+	background-color: transparent;
+}
+
+button.delete_button img, button.edit_button img {
+	width: 100%;
+	height: 100%;
+}
+
+div.character:hover { box-shadow: none; }
+
+button.delete_button:hover { background-color: rgba(222, 184, 135, 0.8); }
+
+button.edit_button:hover { background-color: rgba(222, 184, 135, 0.8); } */
 
 div#message {
 	position: fixed;
 	top: 50%;
 	left: 50%;
-	transform: translate(-50%, 10px);
+	transform: translate(-50%, -10px);
 	font-size: x-large;
 	font-weight: bold;
 }
 
+/* Footer : */
+
 footer {
+	display: flex;
 	position: fixed;
 	bottom: 0px;
 	height: 30px;
 	width: 100vw;
+	padding: 0 10px;
+	justify-content: end;
+	align-items: center;
 	box-shadow: 0 0 5px black;
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: rgba(0, 0, 0, 0.4);
+	box-sizing: border-box;
 }
+
+footer > a:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+/* Grilles : */
+
+/* div.profile, div.hidden_buttons { border: 2px solid black; } */
+/* div.description, div.property { border: 1px solid black; } */
