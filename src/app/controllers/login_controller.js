@@ -1,5 +1,9 @@
 class LoginController {
 
+    constructor() {
+        //
+    }
+
     async login() {
         const user_id = document.querySelector("input#user_id").value
         const password = document.querySelector("input#password").value
