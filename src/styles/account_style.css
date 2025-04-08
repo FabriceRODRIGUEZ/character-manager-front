@@ -1,0 +1,126 @@
+body {
+	position: absolute;
+	inset: 0px;
+	margin: 0px;
+	background-color: burlywood;
+}
+
+div#window {
+	position: absolute;
+	top: 50vh;
+	left: 50vw;
+	transform: translate(-50%, -50%);
+	width: max-content;
+	padding: 15px 20px 20px;
+	border: 2px solid black;
+	box-shadow: 0 0 5px black;
+	border-radius: 10px;
+	background-color: floralwhite;
+}
+
+h1#title {
+	display: block;
+	margin: 0 auto 20px;
+	width: max-content;
+	text-decoration: underline;
+}
+
+div#form {
+	display: flex;
+	margin: 20px 0;
+	flex-direction: column;
+	align-items: center;
+	gap: 15px;
+}
+
+div.field {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 5px;
+}
+
+div.field > label,
+div.field > span {
+	display: block;
+	width: max-content;
+	font-weight: bold;
+	cursor: default;
+}
+
+div.field > div {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+div#visibility_field > div {
+	display: flex;
+	gap: 20px;
+}
+
+div.choice {
+	display: flex;
+	align-items: center;
+}
+
+input[type="text"], input[type="password"] {
+	width: 250px;
+	height: min-content;
+	border: 1px solid grey;
+}
+
+input[type="radio"] {
+	margin-left: 0px;
+}
+
+input[type="radio"]:checked {
+	accent-color: black;
+}
+
+input[type="radio"]:hover {
+	cursor: pointer;
+}
+
+button.update_button {
+	padding: 2px 10px;
+	width: max-content;
+	font-family: "Times New Roman", serif;
+	font-weight: bold;
+	border: 2px solid black;
+	border-radius: 5px;
+	background-color: #F6E9D6;
+}
+
+div#main_buttons {
+	display: flex;
+	width: 100%;
+	margin-top: 20px;
+	justify-content: center;
+	gap: 10px;
+}
+
+button#logout_button,
+button#delete_account {
+	padding: 5px 10px;
+	width: max-content;
+	font-family: "Times New Roman", serif;
+	font-weight: bold;
+	border: 2px solid black;
+	border-radius: 5px;
+	background-color: burlywood;
+}
+
+button#delete_account {
+	background-color: #F6E9D6;
+}
+
+button#logout_button:hover {
+	cursor: pointer;
+	background-color: #D3A05F;
+}
+
+button#delete_account:hover {
+	cursor: pointer;
+	background-color: #EDD3AC;
+}

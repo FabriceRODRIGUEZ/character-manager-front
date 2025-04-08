@@ -3,11 +3,9 @@ document.addEventListener("DOMContentLoaded", start());
 
 async function start() {
     const isAuthentified = await test_authentication()
-    console.log(isAuthentified)
 
     // If the user is not authentified
     if (!isAuthentified) {
-        console.log("login")
         const login_button = document.querySelector("button#login_button")
         login_button.addEventListener("click", event =>
             window.location.href = "/src/pages/login.html")

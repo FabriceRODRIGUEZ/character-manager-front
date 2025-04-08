@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+	<head>
+		<meta charset=UTF-8>
+		<title>Gestion du compte</title>
+		<link rel="icon" href="../../res/icons/logo.ico">
+		<link rel="stylesheet" href="../styles/account_style.css">
+		<script type="module" src="../app/controllers/account_controller.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+
+	<body>
+		<div id="window">
+
+			<h1 id="title">Gestion du compte</h1>
+
+			<div id="form">
+				<div id="username_field" class="field">
+					<label for="username">Nom d'utilisateur :</label>
+                    <div>
+                        <input type="text" id="username" name="username" placeholder="user" autocomplete="off">
+                        <button class="update_button">Modifier</button>
+                    </div>
+					
+				</div>
+
+				<div id="email_field" class="field">
+					<label for="email">Adresse email :</label>
+                    <div>
+                        <input type="text" id="email" name="email" placeholder="user@gmail.com" autocomplete="off">
+                        <button class="update_button">Modifier</button>
+                    </div>
+				</div>
+
+				<div id="password_field" class="field">
+					<label for="password">Mot de passe :</label>
+                    <div>
+                        <input type="password" id="password" name="password" placeholder="11235813" autocomplete="off">
+                        <button class="update_button">Modifier</button>
+                    </div>
+				</div>
+
+				<div id="visibility_field" class="field">
+					<span>Visibilité du compte :</span>
+					<div>
+						<div class="choice">
+							<input type="radio" name="visibility" value="private" id="private" checked>
+							<label for="private">Privé</label>
+						</div>
+						<div class="choice">
+							<input type="radio" name="visibility" value="public" id="public" required>
+							<label for="public">Public</label>
+						</div>
+					</div>
+				</div>
+			</div>
+
+            <div id="main_buttons">
+				<button id="logout_button">
+					Se déconnecter
+				</button>
+
+				<button id="delete_account">
+					Supprimer le compte
+				</button>
+			</div>
+
+		</div>
+	</body>
+
+</html>
