@@ -1,4 +1,5 @@
 import User from "../models/user.js"
+import AuthService from "../services/auth_service.js"
 
 
 class SignupController {
@@ -12,19 +13,16 @@ class SignupController {
         // Vérifications
 
         const user = new User(username, email, password, visibility)
-        await fetch("http://localhost:8080/signup", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(user)
-        })
+        await new AuthService().signup(user)
 
         // Erreur
 
         // Confirmation
 
-        window.location.replace("../pages/login.html")
+        window.location.replace("login.html")
     }
 
 }
+
 
 window.signupController = new SignupController()

@@ -1,8 +1,7 @@
-class LoginController {
+import AuthService from "../services/auth_service.js"
 
-    constructor() {
-        //
-    }
+
+class LoginController {
 
     async login() {
         const user_id = document.querySelector("input#user_id").value
@@ -11,20 +10,14 @@ class LoginController {
         // Vérifications
 
         const data = { "user_id": user_id, "password": password }
-        const response = await fetch("http://localhost:8080/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json"},
-            body: JSON.stringify(data)
-        })
+        await new AuthService().login(data)
 
         // Erreur
 
-        const body = await response.json()
-        sessionStorage.setItem("token", body.token)
-
-        window.location.replace("../pages/home.html")
+        window.location.replace("home.html")
     }
 
 }
+
 
 window.loginController = new LoginController()

@@ -25,6 +25,8 @@ h1#title {
 	text-decoration: underline;
 }
 
+/* Form : */
+
 div#form {
 	display: flex;
 	margin: 20px 0;
@@ -92,7 +94,14 @@ button.update_button {
 	background-color: #F6E9D6;
 }
 
-div#main_buttons {
+button.update_button:hover {
+	cursor: pointer;
+	background-color: #EDD3AC;
+}
+
+/* Buttons : */
+
+div#form + div {
 	display: flex;
 	width: 100%;
 	margin-top: 20px;
@@ -101,7 +110,7 @@ div#main_buttons {
 }
 
 button#logout_button,
-button#delete_account {
+button#delete_account_button {
 	padding: 5px 10px;
 	width: max-content;
 	font-family: "Times New Roman", serif;
@@ -111,7 +120,7 @@ button#delete_account {
 	background-color: burlywood;
 }
 
-button#delete_account {
+button#delete_account_button {
 	background-color: #F6E9D6;
 }
 
@@ -120,7 +129,7 @@ button#logout_button:hover {
 	background-color: #D3A05F;
 }
 
-button#delete_account:hover {
+button#delete_account_button:hover {
 	cursor: pointer;
 	background-color: #EDD3AC;
 }

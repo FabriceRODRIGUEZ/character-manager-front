@@ -1,27 +1,26 @@
-document.addEventListener("DOMContentLoaded", start());
+import AuthService from "../services/auth_service.js"
 
 
-async function start() {
-    const isAuthentified = await test_authentication()
+class HomeController {
 
-    // If the user is not authentified
-    if (!isAuthentified) {
-        const login_button = document.querySelector("button#login_button")
-        login_button.addEventListener("click", event =>
-            window.location.href = "/src/pages/login.html")
+    async start() {
+        const authentication = await new AuthService().authenticate()
+    
+        // If the user is not authentified
+        if (authentication.status() != 200) {
+            const loginButton = document.querySelector("button#login_button")
+            loginButton.addEventListener("click", event =>
+                window.location.href = "login.html")
+        } else {
+            // Account button
+        }
+    
+        const searchButton = document.querySelector("button#search_button")
+        searchButton.addEventListener("click", event =>
+            window.location.href = "search_list.html")
     }
 
-    const search_button = document.querySelector("button#search_button")
-    search_button.addEventListener("click", event =>
-        window.location.href = "/src/pages/search_list.html")
 }
 
 
-async function test_authentication() {
-    const response = await fetch("http://localhost:8080/me", {
-        method: "GET",
-        headers: { "Content-Type": "application/json",
-                   "authorization": `Bearer ${sessionStorage.getItem("token")}` }
-    })
-    return (response.status == 200) ? true : false
-}
+document.addEventListener("DOMContentLoaded", new HomeController().start())
