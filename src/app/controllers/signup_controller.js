@@ -6,7 +6,7 @@ class SignupController {
 
     start() {
         const submitButton = document.querySelector("button#submit_button")
-        submitButton.addEventListener("click", event => this.signup())
+        submitButton.addEventListener("click", (event) => this.signup())
     }
 
     async signup() {

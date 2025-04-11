@@ -42,7 +42,6 @@ nav button:hover {
 nav button > div.filter {
 	padding: 5px 10px;
 	border-radius: 3px;
-	/* background-color: rgba(0, 0, 0, 0.5); */
 }
 
 button#add_button {
@@ -73,13 +72,11 @@ div#sort_section > select {
 	border: 2px solid black;
 	border-radius: 5px;
 	background-color: antiquewhite;
-	/* background-color: #7d756b; */
+	cursor: pointer;
 }
 
-div#sort_section > select:hover {
-	cursor: pointer;
-	background-color: #F4D4AA;
-}
+/* background-color: rgba(0, 0, 0, 0.5); */
+/* background-color: #7d756b; */
 
 /* Characters : */
 

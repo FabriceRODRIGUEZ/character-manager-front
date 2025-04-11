@@ -11,7 +11,7 @@ class AccountController {
     async start() {
 
         const authentication = await new AuthService().authenticate()
-        const username = await authentication.text()
+        this.username = await authentication.text()
 
         const usernameInput = document.querySelector("input#username")
         const updateUsernameButton = document.querySelector("input#username + button.update_button")
@@ -29,26 +29,43 @@ class AccountController {
         const deleteAccountButton = document.querySelector("button#delete_account_button")
 
 
-        updateUsernameButton.addEventListener("click", event =>
-            this.userService.updateUsername(username, usernameInput.value))
+        updateUsernameButton.addEventListener("click", async (event) => {
+            const response = await this.userService.updateUsername(this.username, usernameInput.value)
+            const newUser = await response.json()
+            this.username = newUser.username
+            sessionStorage.setItem("token", newUser.token)
+            usernameInput.value = ""
+        })
 
-        updateEmailButton.addEventListener("click", event =>
-            this.userService.updateEmail(username, emailInput.value))
+        updateEmailButton.addEventListener("click", (event) => {
+            this.userService.updateEmail(username, emailInput.value)
+            emailInput.value = ""
+        })
 
-        updatePasswordButton.addEventListener("click", event =>
-            this.userService.updatePassword(username, passwordInput.value))
+        updatePasswordButton.addEventListener("click", (event) => {
+            this.userService.updatePassword(username, passwordInput.value)
+            passwordInput.value = ""
+        })
 
-        visibilityPrivateInput.addEventListener("click", event =>
+        visibilityPrivateInput.addEventListener("click", (event) =>
             this.userService.updateVisibility(username, "private"))
 
-        visibilityPublicInput.addEventListener("click", event =>
+        visibilityPublicInput.addEventListener("click", (event) =>
             this.userService.updateVisibility(username, "public"))
 
-        logoutButton.addEventListener("click", event => {})
+        logoutButton.addEventListener("click", (event) =>
+            this.logout())
 
-        deleteAccountButton.addEventListener("click", event =>
-            this.userService.deleteAccount(username))
+        deleteAccountButton.addEventListener("click", (event) => {
+            this.userService.deleteAccount(username)
+            this.logout()
+        })
 
+    }
+
+    logout() {
+        sessionStorage.removeItem("token")
+        window.location.replace("home.html")
     }
 
 }

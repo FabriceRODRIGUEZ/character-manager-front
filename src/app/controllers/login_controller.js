@@ -7,9 +7,9 @@ class LoginController {
         const submitButton = document.querySelector("button#submit_button")
         const newUserButton = document.querySelector("button#new_user")
 
-        submitButton.addEventListener("click", event => this.login())
+        submitButton.addEventListener("click", (event) => this.login())
 
-        newUserButton.addEventListener("click", event =>
+        newUserButton.addEventListener("click", (event) =>
             window.location.href = "signup.html")
     }
 

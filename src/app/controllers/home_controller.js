@@ -16,15 +16,15 @@ class HomeController {
         // If the user is not authentified
         if (authentication.status == 401) {
             accounButton.style.display = "none"
-            loginButton.addEventListener("click", event =>
+            loginButton.addEventListener("click", (event) =>
                 window.location.href = "login.html")
         } else {
             loginButton.style.display = "none"
-            accounButton.addEventListener("click", event =>
+            accounButton.addEventListener("click", (event) =>
                 window.location.href = "account.html")
         }
 
-        searchButton.addEventListener("click", event =>
+        searchButton.addEventListener("click", (event) =>
             window.location.href = "search_list.html")
     }
 
