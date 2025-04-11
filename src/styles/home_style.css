@@ -18,46 +18,52 @@ nav {
 	box-sizing: border-box;
 }
 
-button#add_button {
-	width: 40px;
-	height: 40px;
-	padding: 0px;
-	border: 2px solid black;
-	border-radius: 10px;
-	background-color: antiquewhite;
-}
-
-#add_button > .filter {
-	display: flex;
-	width: 100%;
-	height: 100%;
-	justify-content: center;
-	align-items: center;
-	border-radius: 5px;
-	background-color: rgba(0, 0, 0, 0.5);
-}
-
-button#add_button img {
-	width: 60%;
-	height: 60%;
-}
-
 div#sort_section,
-div#login_section {
+div#account_section {
 	display: flex;
 	height: min-content;
 	gap: 10px;
 }
 
-button#filter_button,
-button#search_button,
-button#login_button {
+nav button {
 	height: min-content;
 	padding: 0px;
 	font-weight: bold;
 	border: 2px solid black;
 	border-radius: 5px;
 	background-color: antiquewhite;
+}
+
+nav button:hover {
+	cursor: pointer;
+	background-color: #F4D4AA;
+}
+
+nav button > div.filter {
+	padding: 5px 10px;
+	border-radius: 3px;
+	/* background-color: rgba(0, 0, 0, 0.5); */
+}
+
+button#add_button {
+	width: 40px;
+	height: 40px;
+	border-radius: 10px;
+}
+
+button#add_button > div.filter {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+	border-radius: 5px;
+	box-sizing: border-box;
+}
+
+button#add_button img {
+	width: 20px;
+	height: auto;
 }
 
 div#sort_section > select {
@@ -66,25 +72,13 @@ div#sort_section > select {
 	color: black;
 	border: 2px solid black;
 	border-radius: 5px;
-	background-color: #7d756b;
+	background-color: antiquewhite;
+	/* background-color: #7d756b; */
 }
 
-#filter_button > .filter {
-	padding: 5px 10px;
-	border-radius: 3px;
-	background-color: rgba(0, 0, 0, 0.5);
-}
-
-#search_button > .filter,
-#login_button > .filter {
-	padding: 5px 10px;
-	border-radius: 3px;
-}
-
-#search_button > .filter:hover,
-#login_button > .filter:hover {
-	background-color: rgba(0, 0, 0, 0.2);
+div#sort_section > select:hover {
 	cursor: pointer;
+	background-color: #F4D4AA;
 }
 
 /* Characters : */
@@ -95,88 +89,13 @@ div#characters_list {
 	margin: 70px 20px 50px;
 	flex-wrap: wrap;
 	justify-content: space-between;
-}
-
-/* div.character {
-	display: flex;
-	width: calc(50vw - 30px);
-	height: 20vh;
-	margin-bottom: 20px;
-	padding: 20px;
-	gap: 20px;
 	border: 2px solid black;
-	border-radius: 10px;
-	box-shadow: 0 0 5px black;
-	background-color: floralwhite;
-	box-sizing: border-box;
 }
 
-div.profile img {
-	height: calc(20vh - 44px);
-	width: calc(20vh - 44px);
-	object-fit: cover;
-	object-position: top;
-}
-
-div.description {
-	display: grid;
-	flex-grow: 1;
-	grid-template-columns: 1fr 1fr;
-	grid-template-rows: 1fr 1fr 1fr;
-}
-
-div.property {
-	display: flex;
-	align-items: center;
-	gap: 4px;
-}
-
-div.appreciation {
-	grid-column: 2;
-	grid-row: 2 / 4;
-	gap: 6px;
-}
-
-span.property_name {
-	font-weight: bold;
-	text-decoration: underline;
-	text-wrap: nowrap;
-}
-
-div.appreciation img {
-	width: 20px;
-	height: 20px;
-	vertical-align: middle;
-}
-
-div.hidden_buttons {
-	display: flex;
-	visibility: hidden;
-	flex-direction: column;
-	gap: 2px;
-}
-
-button.delete_button, button.edit_button {
-	width: 24px;
-	height: 24px;
-	padding: 4px;
-	border: none;
-	border-radius: 20%;
-	background-color: transparent;
-}
-
-button.delete_button img, button.edit_button img {
-	width: 100%;
-	height: 100%;
-}
-
-div.character:hover { box-shadow: none; }
-
-button.delete_button:hover { background-color: rgba(222, 184, 135, 0.8); }
-
-button.edit_button:hover { background-color: rgba(222, 184, 135, 0.8); } */
+/* ... */
 
 div#message {
+	visibility: visible;
 	position: fixed;
 	top: 50%;
 	left: 50%;

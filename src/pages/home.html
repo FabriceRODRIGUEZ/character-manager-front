@@ -25,20 +25,20 @@
 
 			<div id="sort_section">
 				<select name="sort_property">
-					<option value="first_name" selected disabled>Prénom</option>
-					<option value="last_name" disabled>Nom de famille</option>
-					<option value="work" disabled>Œuvre</option>
-					<option value="actor" disabled>Acteur</option>
-					<option value="voice_actor" disabled>Doubleur</option>
-					<option value="appreciation" disabled>Appréciation</option>
+					<option value="first_name" selected>Prénom</option>
+					<option value="last_name">Nom de famille</option>
+					<option value="work">Œuvre</option>
+					<option value="actor">Acteur</option>
+					<option value="voice_actor">Doubleur</option>
+					<option value="appreciation">Appréciation</option>
 				</select>
 				<select name="sort_order">
-					<option value="ascendant" selected disabled>Ascendant</option>
-					<option value="descendant" disabled>Descendant</option>
+					<option value="ascendant" selected>Ascendant</option>
+					<option value="descendant">Descendant</option>
 			</select>
 			</div>
 
-			<div id="login_section">
+			<div id="account_section">
 				<button id="search_button">
 					<div class="filter">Listes publiques</div>
 				</button>
@@ -46,50 +46,56 @@
 				<button id="login_button">
 					<div class="filter">Connexion</div>
 				</button>
+
+				<button id="account_button">
+					<div class="filter">Compte</div>
+				</button>
 			</div>
 		</nav>
 
 		<div id="characters_list">
-			<!-- <div class="character">
+
+			<div class="character">
 				<div class="profile">
-					<img src="{{character.profile if (character.profile != '') else '/static/images/profile.png'}}" alt="Image de profil">
+					<img src="../../res/images/profile.png" alt="Image de profil">
 				</div>
+
 				<div class="description">
 					<div class="property name">
 						<span class="property_name">Nom :</span>
-						<span class="first_name">{{character.first_name}}</span>
-						<span class="last_name">{{character.last_name}}</span>
+						<span class="first_name">(Prénom)</span>
+						<span class="last_name">(Nom)</span>
 					</div>
 					<div class="property work">
 						<span class="property_name">Œuvre :</span>
-						<span>{{character.work}}</span>
+						<span>(Œuvre)</span>
 					</div>
 					<div class="property actor">
-						<span class="property_name">{{"Actrice" if (character.gender == "Femme") else "Acteur"}} :</span>
-						<span>{{character.actor}}</span>
+						<span class="property_name">Acteur (actrice) :</span>
+						<span>(Acteur)</span>
 					</div>
 					<div class="property voice_actor">
-						<span class="property_name">{{"Doubleuse" if (character.gender == "Femme") else "Doubleur"}} :</span>
-						<span>{{character.voice_actor}}</span>
+						<span class="property_name">Doubleur (doubleuse) :</span>
+						<span>(Doubleur)</span>
 					</div>
 					<div class="property appreciation">
 						<span class="property_name">Appréciation :</span>
 						<div>
-							{% for i in range(character.appreciation) %}
-							<img src="/static/images/star.ico" alt="Étoile">
-							{% endfor %}
+							<img src="../../res/icons/star.ico" alt="Étoile">
 						</div>
 					</div>
 				</div>
+
 				<div class="hidden_buttons">
-					<button class="delete_button" onclick="window.location.href='/delete-character/{{character.id}}';">
-						<img src="/static/images/cross.ico" alt="Croix">
+					<button class="delete_button">
+						<img src="../../res/icons/cross.ico" alt="Croix">
 					</button>
-					<button class="edit_button" onclick="window.location.href='/edit-character/{{character.id}}';">
-						<img src="/static/images/edition.ico" alt="Édition">
+					<button class="edit_button">
+						<img src="../../res/icons/edition.ico" alt="Édition">
 					</button>
 				</div>
-			</div> -->
+			</div>
+
 		</div>
 
 		<div id="message">
