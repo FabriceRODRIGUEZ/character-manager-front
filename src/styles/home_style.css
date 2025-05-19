@@ -13,7 +13,7 @@ nav {
 	padding: 5px 10px;
 	justify-content: space-between;
 	align-items: center;
-	box-shadow: 0 0px 5px black;
+	box-shadow: 0 0 10px black;
 	background-color: sienna;
 	box-sizing: border-box;
 }
@@ -75,24 +75,102 @@ div#sort_section > select {
 	cursor: pointer;
 }
 
-/* background-color: rgba(0, 0, 0, 0.5); */
-/* background-color: #7d756b; */
-
 /* Characters : */
 
 div#characters_list {
-	visibility: hidden;
+	visibility: visible;
 	display: flex;
 	margin: 70px 20px 50px;
 	flex-wrap: wrap;
 	justify-content: space-between;
-	border: 2px solid black;
 }
 
-/* ... */
+div.character {
+	display: flex;
+	width: calc(50vw - 30px);
+	height: 20vh;
+	padding: 20px;
+	gap: 20px;
+	margin-bottom: 20px;
+	border: 2px solid black;
+	border-radius: 10px;
+	box-shadow: 0 0 5px black;
+	background-color: floralwhite;
+	box-sizing: border-box;
+}
+
+div.character:last-child,
+div.character:nth-last-child(2) {
+	margin-bottom: 0px;
+}
+
+div.profile img {
+	height: calc(20vh - 44px);
+	width: calc(20vh - 44px);
+	object-fit: cover;
+	object-position: top;
+}
+
+div.description {
+	display: grid;
+	flex-grow: 1;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr;
+}
+
+div.property {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+}
+
+div.appreciation {
+	grid-column: 2;
+	grid-row: 2 / 4;
+	gap: 6px;
+}
+
+span.property_name {
+	font-weight: bold;
+	text-decoration: underline;
+	text-wrap: nowrap;
+}
+
+div.appreciation img {
+	width: 20px;
+	height: 20px;
+	vertical-align: middle;
+}
+
+div.hidden_buttons {
+	display: flex;
+	visibility: hidden;
+	flex-direction: column;
+	gap: 2px;
+}
+
+button.delete_button, button.edit_button {
+	width: 24px;
+	height: 24px;
+	padding: 4px;
+	border: none;
+	border-radius: 20%;
+	background-color: transparent;
+}
+
+button.delete_button img, button.edit_button img {
+	width: 100%;
+	height: 100%;
+}
+
+div.character:hover { box-shadow: none; }
+button.delete_button:hover { background-color: rgba(222, 184, 135, 0.8); }
+button.edit_button:hover { background-color: rgba(222, 184, 135, 0.8); }
+
+/* Message : */
 
 div#message {
-	visibility: visible;
+	visibility: hidden;
 	position: fixed;
 	top: 50%;
 	left: 50%;
@@ -104,6 +182,7 @@ div#message {
 /* Footer : */
 
 footer {
+	visibility: hidden;
 	display: flex;
 	position: fixed;
 	bottom: 0px;
@@ -122,7 +201,8 @@ footer > a:hover {
 	cursor: pointer;
 }
 
-/* Grilles : */
+/* - - - */
 
+/* div#characters_list { border: 2px solid red; } */
 /* div.profile, div.hidden_buttons { border: 2px solid black; } */
 /* div.description, div.property { border: 1px solid black; } */
