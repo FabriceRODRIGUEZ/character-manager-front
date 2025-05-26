@@ -5,19 +5,20 @@ div#overlay {
 	inset: 0px;
 	background-color: rgba(0, 0, 0, 0.5);
 	transition: visibility 0.4s,
-				opacity 0.4s;
+				opacity 0.4s 0.2s;
 }
 
 div#overlay.show {
 	visibility: visible;
 	opacity: 1;
+	transition: opacity 0.4s;
 }
 
 div.modal {
 	visibility: hidden;
 	opacity: 0;
 	position: absolute;
-	width: max-content;
+	width: 400px;
 	left: 50vw;
 	top: 50vh;
 	translate: -50% -50%;
@@ -32,6 +33,7 @@ div.modal {
 div.modal.show {
 	visibility: visible;
 	opacity: 1;
+	transition: opacity 0.4s 0.2s;
 }
 
 h1#title {
@@ -72,21 +74,54 @@ form {
 	gap: 10px;
 }
 
-div.field > label,
+div.field {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+}
+
+div.field > label {
+	padding: 4px 0;
+	height: min-content;
+	font-weight: bold;
+}
+
+div.field:nth-child(1) > label,
+div.field:nth-child(4) > label {
+	padding-top: 0px;
+}
+
 div.field > span {
+	padding-bottom: 4px;
+	height: min-content;
 	font-weight: bold;
 	cursor: default;
 }
 
-label sup,
-span sup {
-	color: red;
+label sup, span sup {
+	color: crimson;
 }
 
-input[type="text"],
-input[type="password"],
-textarea {
+input[type="text"], textarea {
+	flex-grow: 1;
+	font-family: "Times New Roman", serif;
+	font-size: medium;
 	border: 1px solid grey;
+}
+
+div.field > span + div {
+	display: flex;
+	flex-grow: 1;
+	justify-content: space-evenly;
+}
+
+div.choice {
+	display: flex;
+	align-items: center;
+}
+
+input[type="radio"] {
+	margin-left: 0px;
 }
 
 input[type="radio"]:checked {
@@ -97,9 +132,13 @@ input[type="radio"]:hover {
 	cursor: pointer;
 }
 
-textarea {
-	width: 310px;
-	vertical-align: middle;
+div#legend {
+	position: absolute;
+	left: 20px;
+	bottom: 20px;
+	padding-bottom: 4px;
+	font-size: smaller;
+	color: crimson;
 }
 
 button#submit_button {
@@ -119,55 +158,6 @@ button#submit_button:hover {
 	background-color: #D3A05F;
 }
 
-/* <style>
-	input[type="text"] { width: 300px; }
-	input#first_name, input#last_name { width: 200px; }
-	input[type="radio"] { margin-left: 15px; }
-	input[type="radio"]:checked { accent-color: black; }
-	label[for="man"], label[for="woman"] { font-weight: normal; }
-</style> */
-
-/* div.field {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 5px;
-}
-
-div.field > label,
-div.field > span {
-	display: block;
-	width: max-content;
-	font-weight: bold;
-	cursor: default;
-}
-
-div.field > div {
-	display: flex;
-	align-items: center;
-	gap: 10px;
-}
-
-div#visibility_field > div {
-	display: flex;
-	gap: 20px;
-}
-
-div.choice {
-	display: flex;
-	align-items: center;
-}
-
-input[type="text"], input[type="password"] {
-	width: 250px;
-	height: min-content;
-	border: 1px solid grey;
-}
-
-input[type="radio"] {
-	margin-left: 0px;
-} */
-
 /* - - - */
 
 /* @media(max-width: 600px) {
@@ -179,3 +169,8 @@ input[type="radio"] {
 /* h1#title { border: 2px solid black; } */
 /* form { border: 2px solid black; } */
 /* div.field { border: 2px solid black; } */
+/* div.field > label { border: 2px solid black; } */
+/* div.field > span { border: 2px solid black; } */
+/* div.field > span + div { border: 2px solid black; } */
+/* div.choice { border: 2px solid black; } */
+/* div#legend { border: 2px solid black; } */

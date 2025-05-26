@@ -13,7 +13,7 @@ nav {
 	padding: 5px 10px;
 	justify-content: space-between;
 	align-items: center;
-	box-shadow: 0 0 10px black;
+	box-shadow: 0 0 5px black;
 	background-color: sienna;
 	box-sizing: border-box;
 }
@@ -34,7 +34,7 @@ nav button {
 	background-color: antiquewhite;
 }
 
-nav button:hover {
+nav button.active:hover {
 	cursor: pointer;
 	background-color: #F4D4AA;
 }
@@ -42,6 +42,10 @@ nav button:hover {
 nav button > div.filter {
 	padding: 5px 10px;
 	border-radius: 3px;
+}
+
+nav button > div.filter.show {
+	background-color: rgba(0, 0, 0, 0.5);
 }
 
 button#add_button {
@@ -72,7 +76,20 @@ div#sort_section > select {
 	border: 2px solid black;
 	border-radius: 5px;
 	background-color: antiquewhite;
+}
+
+div#sort_section > select.inactive {
+	background-color: #7D756B;
+}
+
+div#sort_section > select:hover {
 	cursor: pointer;
+	background-color: #F4D4AA;
+}
+
+div#sort_section > select.inactive:hover {
+	cursor: default;
+	background-color: #7D756B;
 }
 
 /* Characters : */
@@ -132,7 +149,6 @@ div.appreciation {
 
 span.property_name {
 	font-weight: bold;
-	text-decoration: underline;
 	text-wrap: nowrap;
 }
 
@@ -170,11 +186,11 @@ button.edit_button:hover { background-color: rgba(222, 184, 135, 0.8); }
 /* Message : */
 
 div#message {
-	visibility: hidden;
+	display: none;
 	position: fixed;
-	top: 50%;
 	left: 50%;
-	transform: translate(-50%, -10px);
+	top: 50%;
+	translate: -50%;
 	font-size: x-large;
 	font-weight: bold;
 }
@@ -182,16 +198,14 @@ div#message {
 /* Footer : */
 
 footer {
-	visibility: hidden;
 	display: flex;
-	position: fixed;
+	position: absolute;
 	bottom: 0px;
-	height: 30px;
+	height: 40px;
 	width: 100vw;
 	padding: 0 10px;
 	justify-content: end;
 	align-items: center;
-	box-shadow: 0 0 5px black;
 	background-color: rgba(0, 0, 0, 0.4);
 	box-sizing: border-box;
 }
@@ -203,6 +217,6 @@ footer > a:hover {
 
 /* - - - */
 
-/* div#characters_list { border: 2px solid red; } */
+/* div#characters_list { border: 2px solid crimson; } */
 /* div.profile, div.hidden_buttons { border: 2px solid black; } */
 /* div.description, div.property { border: 1px solid black; } */

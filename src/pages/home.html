@@ -14,13 +14,13 @@
 	<body>
 
 		<nav>
-			<button id="add_button">
+			<button id="add_button" class="active">
 				<div class="filter">
 					<img src="../../res/icons/plus.ico" alt="Plus">
 				</div>
 			</button>
 
-			<button id="filter_button">
+			<button id="filter_button" class="active">
 				<div class="filter">Filtrer</div>
 			</button>
 
@@ -40,13 +40,10 @@
 			</div>
 
 			<div id="account_section">
-				<button id="search_button">
-					<div class="filter">Listes publiques</div>
-				</button>
-				<button id="login_button">
+				<button id="login_button" class="active">
 					<div class="filter">Connexion</div>
 				</button>
-				<button id="account_button">
+				<button id="account_button" class="active">
 					<div class="filter">Compte</div>
 				</button>
 			</div>
@@ -71,11 +68,11 @@
 							<span>(Œuvre)</span>
 						</div>
 						<div class="property actor">
-							<span class="property_name">Acteur (actrice) :</span>
+							<span class="property_name">Acteur :</span>
 							<span>(Acteur)</span>
 						</div>
 						<div class="property voice_actor">
-							<span class="property_name">Doubleur (doubleuse) :</span>
+							<span class="property_name">Doubleur :</span>
 							<span>(Doubleur)</span>
 						</div>
 						<div class="property appreciation">
@@ -113,16 +110,18 @@
 						<span>(Œuvre)</span>
 					</div>
 					<div class="property actor">
-						<span class="property_name">Acteur (actrice) :</span>
+						<span class="property_name">Acteur :</span>
 						<span>(Acteur)</span>
 					</div>
 					<div class="property voice_actor">
-						<span class="property_name">Doubleur (doubleuse) :</span>
+						<span class="property_name">Doubleur :</span>
 						<span>(Doubleur)</span>
 					</div>
 					<div class="property appreciation">
 						<span class="property_name">Appréciation :</span>
 						<div>
+							<img src="../../res/icons/star.ico" alt="Étoile">
+							<img src="../../res/icons/star.ico" alt="Étoile">
 							<img src="../../res/icons/star.ico" alt="Étoile">
 						</div>
 					</div>
@@ -154,16 +153,17 @@
 						<span>(Œuvre)</span>
 					</div>
 					<div class="property actor">
-						<span class="property_name">Acteur (actrice) :</span>
+						<span class="property_name">Acteur :</span>
 						<span>(Acteur)</span>
 					</div>
 					<div class="property voice_actor">
-						<span class="property_name">Doubleur (doubleuse) :</span>
+						<span class="property_name">Doubleur :</span>
 						<span>(Doubleur)</span>
 					</div>
 					<div class="property appreciation">
 						<span class="property_name">Appréciation :</span>
 						<div>
+							<img src="../../res/icons/star.ico" alt="Étoile">
 							<img src="../../res/icons/star.ico" alt="Étoile">
 						</div>
 					</div>
@@ -195,11 +195,11 @@
 						<span>(Œuvre)</span>
 					</div>
 					<div class="property actor">
-						<span class="property_name">Acteur (actrice) :</span>
+						<span class="property_name">Acteur :</span>
 						<span>(Acteur)</span>
 					</div>
 					<div class="property voice_actor">
-						<span class="property_name">Doubleur (doubleuse) :</span>
+						<span class="property_name">Doubleur :</span>
 						<span>(Doubleur)</span>
 					</div>
 					<div class="property appreciation">
@@ -230,9 +230,9 @@
 			<a id="mentions">Mentions légales</a>
 		</footer>
 
-		<div id="overlay" class=""></div>
+		<div id="overlay" class="show"></div>
 
-		<div id="add_modal" class="modal">
+		<div id="add_modal" class="modal show">
 			<h1 id="title">Nouveau personnage</h1>
 
 			<button id="close_button">
@@ -242,7 +242,7 @@
 			<form onsubmit="return false">
 				<div class="field">
 					<label for="first_name">Prénom<sup>*</sup> :</label>
-					<input type="text" id="first_name" name="first_name" autocomplete="off" required>
+					<input type="text" id="first_name" name="first_name" autocomplete="off">
 				</div>
 
 				<div class="field">
@@ -266,7 +266,7 @@
 
 				<div class="field">
 					<label for="work">Œuvre<sup>*</sup> :</label>
-					<input type="text" id="work" name="work" autocomplete="off" required>
+					<input type="text" id="work" name="work" autocomplete="off">
 				</div>
 
 				<div class="field">
@@ -316,6 +316,8 @@
 					</div>
 				</div>
 			</form>
+
+			<div id="legend"><sup>*</sup> Champ obligatoire</div>
 
 			<button id="submit_button">Ajouter</button>
 		</div>
