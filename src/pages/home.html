@@ -54,6 +54,49 @@
 
 		<div id="characters_list">
 
+			<template>
+				<div class="character">
+					<div class="profile">
+						<img src="../../res/images/profile.png" alt="Image de profil">
+					</div>
+
+					<div class="description">
+						<div class="property name">
+							<span class="property_name">Nom :</span>
+							<span class="first_name">(Prénom)</span>
+							<span class="last_name">(Nom)</span>
+						</div>
+						<div class="property work">
+							<span class="property_name">Œuvre :</span>
+							<span>(Œuvre)</span>
+						</div>
+						<div class="property actor">
+							<span class="property_name">Acteur (actrice) :</span>
+							<span>(Acteur)</span>
+						</div>
+						<div class="property voice_actor">
+							<span class="property_name">Doubleur (doubleuse) :</span>
+							<span>(Doubleur)</span>
+						</div>
+						<div class="property appreciation">
+							<span class="property_name">Appréciation :</span>
+							<div>
+								<img src="../../res/icons/star.ico" alt="Étoile">
+							</div>
+						</div>
+					</div>
+
+					<div class="hidden_buttons">
+						<button class="delete_button">
+							<img src="../../res/icons/cross.ico" alt="Croix">
+						</button>
+						<button class="edit_button">
+							<img src="../../res/icons/edition.ico" alt="Édition">
+						</button>
+					</div>
+				</div>
+			</template>
+
 			<div class="character">
 				<div class="profile">
 					<img src="../../res/images/profile.png" alt="Image de profil">
@@ -80,8 +123,6 @@
 					<div class="property appreciation">
 						<span class="property_name">Appréciation :</span>
 						<div>
-							<img src="../../res/icons/star.ico" alt="Étoile">
-							<img src="../../res/icons/star.ico" alt="Étoile">
 							<img src="../../res/icons/star.ico" alt="Étoile">
 						</div>
 					</div>
@@ -124,7 +165,46 @@
 						<span class="property_name">Appréciation :</span>
 						<div>
 							<img src="../../res/icons/star.ico" alt="Étoile">
-							<img src="../../res/icons/star.ico" alt="Étoile">
+						</div>
+					</div>
+				</div>
+
+				<div class="hidden_buttons">
+					<button class="delete_button">
+						<img src="../../res/icons/cross.ico" alt="Croix">
+					</button>
+					<button class="edit_button">
+						<img src="../../res/icons/edition.ico" alt="Édition">
+					</button>
+				</div>
+			</div>
+
+			<div class="character">
+				<div class="profile">
+					<img src="../../res/images/profile.png" alt="Image de profil">
+				</div>
+
+				<div class="description">
+					<div class="property name">
+						<span class="property_name">Nom :</span>
+						<span class="first_name">(Prénom)</span>
+						<span class="last_name">(Nom)</span>
+					</div>
+					<div class="property work">
+						<span class="property_name">Œuvre :</span>
+						<span>(Œuvre)</span>
+					</div>
+					<div class="property actor">
+						<span class="property_name">Acteur (actrice) :</span>
+						<span>(Acteur)</span>
+					</div>
+					<div class="property voice_actor">
+						<span class="property_name">Doubleur (doubleuse) :</span>
+						<span>(Doubleur)</span>
+					</div>
+					<div class="property appreciation">
+						<span class="property_name">Appréciation :</span>
+						<div>
 							<img src="../../res/icons/star.ico" alt="Étoile">
 						</div>
 					</div>
@@ -150,82 +230,94 @@
 			<a id="mentions">Mentions légales</a>
 		</footer>
 
-		<div id="overlay"></div>
+		<div id="overlay" class=""></div>
 
 		<div id="add_modal" class="modal">
+			<h1 id="title">Nouveau personnage</h1>
 
-			<h1>Nouveau personnage</h1>
-
-			<button onclick="window.location.href='/';" id="close">
-				<img src="/static/images/cross.ico" alt="Croix">
+			<button id="close_button">
+				<img src="../../res/icons/cross.ico" alt="Croix">
 			</button>
 
-			<form action="/new-character" method="post">
-				<div>
-					<label for="first_name">Prénom : </label>
-					<input type="text" name="first_name" id="first_name" required>
+			<form onsubmit="return false">
+				<div class="field">
+					<label for="first_name">Prénom<sup>*</sup> :</label>
+					<input type="text" id="first_name" name="first_name" autocomplete="off" required>
 				</div>
 
-				<div>
-					<label for="last_name">Nom de famille : </label>
-					<input type="text" name="last_name" id="last_name">
+				<div class="field">
+					<label for="last_name">Nom de famille :</label>
+					<input type="text" id="last_name" name="last_name" autocomplete="off">
 				</div>
 
-				<div>
-					<span>Sexe : </span>
-					<input type="radio" name="gender" value="Homme" id="man" required>
-					<label for="man">Homme</label>
-					<input type="radio" name="gender" value="Femme" id="woman" required>
-					<label for="woman">Femme</label>
+				<div class="field">
+					<span>Sexe<sup>*</sup> :</span>
+					<div>
+						<div class="choice">
+							<input type="radio" name="gender" value="Homme" id="man" checked>
+							<label for="man">Homme</label>
+						</div>
+						<div class="choice">
+							<input type="radio" name="gender" value="Femme" id="woman">
+							<label for="woman">Femme</label>
+						</div>
+					</div>
 				</div>
 
-				<div>
-					<label for="work">Œuvre : </label>
-					<input type="text" name="work" id="work" required>
+				<div class="field">
+					<label for="work">Œuvre<sup>*</sup> :</label>
+					<input type="text" id="work" name="work" autocomplete="off" required>
 				</div>
 
-				<div>
-					<label for="actor">Acteur : </label>
-					<input type="text" name="actor" id="actor">
+				<div class="field">
+					<label for="actor">Acteur :</label>
+					<input type="text" id="actor" name="actor" autocomplete="off">
 				</div>
 
-				<div>
-					<label for="voice_actor">Doubleur : </label>
-					<input type="text" name="voice_actor" id="voice_actor">
+				<div class="field">
+					<label for="voice_actor">Doubleur :</label>
+					<input type="text" id="voice_actor" name="voice_actor" autocomplete="off">
 				</div>
 
-				<div>
-					<label for="profile">Image de profil : </label>
-					<input type="text" name="profile" id="profile">
+				<div class="field">
+					<label for="profile">Image de profil :</label>
+					<input type="text" id="profile" name="profile" autocomplete="off">
 				</div>
 
-				<div>
-					<span>Appréciation : </span>
-					<input type="radio" name="appreciation" value="1" id="1_star" required>
-					<label for="1_star">
-						<img src="/static/images/star.ico" alt="Étoile">
-					</label>
-					<input type="radio" name="appreciation" value="2" id="2_stars" required>
-					<label for="2_stars">
-						<img src="/static/images/star.ico" alt="Étoile">
-						<img src="/static/images/star.ico" alt="Étoile">
-					</label>
-					<input type="radio" name="appreciation" value="3" id="3_stars" required>
-					<label for="3_stars">
-						<img src="/static/images/star.ico" alt="Étoile">
-						<img src="/static/images/star.ico" alt="Étoile">
-						<img src="/static/images/star.ico" alt="Étoile">
-					</label>
+				<div class="field">
+					<label for="comment">Commentaire :</label>
+					<textarea id="comment" name="comment" rows="3" autocomplete="off"></textarea>
 				</div>
 
-				<div>
-					<label for="comment">Commentaire : </label>
-					<textarea rows="3" name="comment" id="comment"></textarea>
+				<div class="field">
+					<span>Appréciation<sup>*</sup> :</span>
+					<div>
+						<div class="choice">
+							<input type="radio" name="appreciation" value="1" id="1_star" checked>
+							<label for="1_star">
+								<img src="../../res/icons/star.ico" alt="Étoile">
+							</label>
+						</div>
+						<div class="choice">
+							<input type="radio" name="appreciation" value="2" id="2_stars">
+							<label for="2_stars">
+								<img src="../../res/icons/star.ico" alt="Étoile">
+								<img src="../../res/icons/star.ico" alt="Étoile">
+							</label>
+						</div>
+						<div class="choice">
+							<input type="radio" name="appreciation" value="3" id="3_stars">
+							<label for="3_stars">
+								<img src="../../res/icons/star.ico" alt="Étoile">
+								<img src="../../res/icons/star.ico" alt="Étoile">
+								<img src="../../res/icons/star.ico" alt="Étoile">
+							</label>
+						</div>
+					</div>
 				</div>
-
-				<input type="submit" value="Ajouter" id="submit_button">
 			</form>
 
+			<button id="submit_button">Ajouter</button>
 		</div>
 
 	</body>

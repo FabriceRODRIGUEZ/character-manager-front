@@ -4,8 +4,8 @@ import AuthService from "../services/auth_service.js"
 class HomeController {
 
     async start() {
-        const authentication = await new AuthService().authenticate()
-        // const addButton = document.querySelector("button#addButton")
+        // const authentication = await new AuthService().authenticate()
+        const addButton = document.querySelector("button#addButton")
         // const filterButton = document.querySelector("button#filterButton")
         // const sortProperty = document.querySelector("select#sort_property")
         // const sortOrder = document.querySelector("select#sort_order")
@@ -14,18 +14,18 @@ class HomeController {
         const accounButton = document.querySelector("button#account_button")
 
         // If the user is not authentified
-        if (authentication.status == 401) {
-            accounButton.style.display = "none"
-            loginButton.addEventListener("click", (event) =>
-                window.location.href = "login.html")
-        } else {
-            loginButton.style.display = "none"
-            accounButton.addEventListener("click", (event) =>
-                window.location.href = "account.html")
-        }
+        // if (authentication.status == 401) {
+        //     accounButton.style.display = "none"
+        //     loginButton.addEventListener("click", () =>
+        //         location.href = "login.html")
+        // } else {
+        //     loginButton.style.display = "none"
+        //     accounButton.addEventListener("click", () =>
+        //         location.href = "account.html")
+        // }
 
-        searchButton.addEventListener("click", (event) =>
-            window.location.href = "search_list.html")
+        searchButton.addEventListener("click", () =>
+            location.href = "search_list.html")
     }
 
 }
