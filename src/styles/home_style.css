@@ -3,99 +3,8 @@ body {
 	background-color: burlywood;
 }
 
-/* Menu : */
-
-nav {
-	display: flex;
-	position: fixed;
-	top: 0px;
-	width: 100vw;
-	padding: 5px 10px;
-	justify-content: space-between;
-	align-items: center;
-	box-shadow: 0 0 5px black;
-	background-color: sienna;
-	box-sizing: border-box;
-}
-
-div#sort_section,
-div#account_section {
-	display: flex;
-	height: min-content;
-	gap: 10px;
-}
-
-nav button {
-	height: min-content;
-	padding: 0px;
-	font-weight: bold;
-	border: 2px solid black;
-	border-radius: 5px;
-	background-color: antiquewhite;
-}
-
-nav button.active:hover {
-	cursor: pointer;
-	background-color: #F4D4AA;
-}
-
-nav button > div.filter {
-	padding: 5px 10px;
-	border-radius: 3px;
-}
-
-nav button > div.filter.show {
-	background-color: rgba(0, 0, 0, 0.5);
-}
-
-button#add_button {
-	width: 40px;
-	height: 40px;
-	border-radius: 10px;
-}
-
-button#add_button > div.filter {
-	display: flex;
-	width: 100%;
-	height: 100%;
-	justify-content: center;
-	align-items: center;
-	border-radius: 5px;
-	box-sizing: border-box;
-}
-
-button#add_button img {
-	width: 20px;
-	height: auto;
-}
-
-div#sort_section > select {
-	padding: 2px;
-	font-weight: bold;
-	color: black;
-	border: 2px solid black;
-	border-radius: 5px;
-	background-color: antiquewhite;
-}
-
-div#sort_section > select.inactive {
-	background-color: #7D756B;
-}
-
-div#sort_section > select:hover {
-	cursor: pointer;
-	background-color: #F4D4AA;
-}
-
-div#sort_section > select.inactive:hover {
-	cursor: default;
-	background-color: #7D756B;
-}
-
-/* Characters : */
-
 div#characters_list {
-	visibility: visible;
+	visibility: hidden;
 	display: flex;
 	margin: 70px 20px 50px;
 	flex-wrap: wrap;
@@ -119,6 +28,10 @@ div.character {
 div.character:last-child,
 div.character:nth-last-child(2) {
 	margin-bottom: 0px;
+}
+
+div.character:hover {
+	box-shadow: none;
 }
 
 div.profile img {
@@ -147,6 +60,10 @@ div.appreciation {
 	gap: 6px;
 }
 
+div.appreciation > div {
+	cursor: default;
+}
+
 span.property_name {
 	font-weight: bold;
 	text-wrap: nowrap;
@@ -165,7 +82,8 @@ div.hidden_buttons {
 	gap: 2px;
 }
 
-button.delete_button, button.edit_button {
+button.delete_button,
+button.edit_button {
 	width: 24px;
 	height: 24px;
 	padding: 4px;
@@ -174,16 +92,16 @@ button.delete_button, button.edit_button {
 	background-color: transparent;
 }
 
-button.delete_button img, button.edit_button img {
+button.delete_button:hover,
+button.edit_button:hover {
+	background-color: rgba(222, 184, 135, 0.8);
+}
+
+button.delete_button img,
+button.edit_button img {
 	width: 100%;
 	height: 100%;
 }
-
-div.character:hover { box-shadow: none; }
-button.delete_button:hover { background-color: rgba(222, 184, 135, 0.8); }
-button.edit_button:hover { background-color: rgba(222, 184, 135, 0.8); }
-
-/* Message : */
 
 div#message {
 	display: none;
@@ -194,8 +112,6 @@ div#message {
 	font-size: x-large;
 	font-weight: bold;
 }
-
-/* Footer : */
 
 footer {
 	display: flex;

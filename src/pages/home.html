@@ -6,6 +6,7 @@
 		<title>Gestionnaire de personnages</title>
 		<link rel="icon" href="../../res/icons/logo.ico">
 		<link rel="stylesheet" href="../styles/home_style.css">
+		<link rel="stylesheet" href="../styles/navbar_style.css">
 		<link rel="stylesheet" href="../styles/modal_style.css">
 		<script type="module" src="../app/controllers/home_controller.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,7 +51,6 @@
 		</nav>
 
 		<div id="characters_list">
-
 			<template>
 				<div class="character">
 					<div class="profile">
@@ -58,24 +58,24 @@
 					</div>
 
 					<div class="description">
-						<div class="property name">
+						<div class="property">
 							<span class="property_name">Nom :</span>
 							<span class="first_name">(Prénom)</span>
 							<span class="last_name">(Nom)</span>
 						</div>
-						<div class="property work">
+						<div class="property">
 							<span class="property_name">Œuvre :</span>
 							<span>(Œuvre)</span>
 						</div>
-						<div class="property actor">
+						<div class="property">
 							<span class="property_name">Acteur :</span>
 							<span>(Acteur)</span>
 						</div>
-						<div class="property voice_actor">
+						<div class="property">
 							<span class="property_name">Doubleur :</span>
 							<span>(Doubleur)</span>
 						</div>
-						<div class="property appreciation">
+						<div class="property">
 							<span class="property_name">Appréciation :</span>
 							<div>
 								<img src="../../res/icons/star.ico" alt="Étoile">
@@ -93,133 +93,6 @@
 					</div>
 				</div>
 			</template>
-
-			<div class="character">
-				<div class="profile">
-					<img src="../../res/images/profile.png" alt="Image de profil">
-				</div>
-
-				<div class="description">
-					<div class="property name">
-						<span class="property_name">Nom :</span>
-						<span class="first_name">(Prénom)</span>
-						<span class="last_name">(Nom)</span>
-					</div>
-					<div class="property work">
-						<span class="property_name">Œuvre :</span>
-						<span>(Œuvre)</span>
-					</div>
-					<div class="property actor">
-						<span class="property_name">Acteur :</span>
-						<span>(Acteur)</span>
-					</div>
-					<div class="property voice_actor">
-						<span class="property_name">Doubleur :</span>
-						<span>(Doubleur)</span>
-					</div>
-					<div class="property appreciation">
-						<span class="property_name">Appréciation :</span>
-						<div>
-							<img src="../../res/icons/star.ico" alt="Étoile">
-							<img src="../../res/icons/star.ico" alt="Étoile">
-							<img src="../../res/icons/star.ico" alt="Étoile">
-						</div>
-					</div>
-				</div>
-
-				<div class="hidden_buttons">
-					<button class="delete_button">
-						<img src="../../res/icons/cross.ico" alt="Croix">
-					</button>
-					<button class="edit_button">
-						<img src="../../res/icons/edition.ico" alt="Édition">
-					</button>
-				</div>
-			</div>
-
-			<div class="character">
-				<div class="profile">
-					<img src="../../res/images/profile.png" alt="Image de profil">
-				</div>
-
-				<div class="description">
-					<div class="property name">
-						<span class="property_name">Nom :</span>
-						<span class="first_name">(Prénom)</span>
-						<span class="last_name">(Nom)</span>
-					</div>
-					<div class="property work">
-						<span class="property_name">Œuvre :</span>
-						<span>(Œuvre)</span>
-					</div>
-					<div class="property actor">
-						<span class="property_name">Acteur :</span>
-						<span>(Acteur)</span>
-					</div>
-					<div class="property voice_actor">
-						<span class="property_name">Doubleur :</span>
-						<span>(Doubleur)</span>
-					</div>
-					<div class="property appreciation">
-						<span class="property_name">Appréciation :</span>
-						<div>
-							<img src="../../res/icons/star.ico" alt="Étoile">
-							<img src="../../res/icons/star.ico" alt="Étoile">
-						</div>
-					</div>
-				</div>
-
-				<div class="hidden_buttons">
-					<button class="delete_button">
-						<img src="../../res/icons/cross.ico" alt="Croix">
-					</button>
-					<button class="edit_button">
-						<img src="../../res/icons/edition.ico" alt="Édition">
-					</button>
-				</div>
-			</div>
-
-			<div class="character">
-				<div class="profile">
-					<img src="../../res/images/profile.png" alt="Image de profil">
-				</div>
-
-				<div class="description">
-					<div class="property name">
-						<span class="property_name">Nom :</span>
-						<span class="first_name">(Prénom)</span>
-						<span class="last_name">(Nom)</span>
-					</div>
-					<div class="property work">
-						<span class="property_name">Œuvre :</span>
-						<span>(Œuvre)</span>
-					</div>
-					<div class="property actor">
-						<span class="property_name">Acteur :</span>
-						<span>(Acteur)</span>
-					</div>
-					<div class="property voice_actor">
-						<span class="property_name">Doubleur :</span>
-						<span>(Doubleur)</span>
-					</div>
-					<div class="property appreciation">
-						<span class="property_name">Appréciation :</span>
-						<div>
-							<img src="../../res/icons/star.ico" alt="Étoile">
-						</div>
-					</div>
-				</div>
-
-				<div class="hidden_buttons">
-					<button class="delete_button">
-						<img src="../../res/icons/cross.ico" alt="Croix">
-					</button>
-					<button class="edit_button">
-						<img src="../../res/icons/edition.ico" alt="Édition">
-					</button>
-				</div>
-			</div>
-
 		</div>
 
 		<div id="message">
@@ -230,9 +103,9 @@
 			<a id="mentions">Mentions légales</a>
 		</footer>
 
-		<div id="overlay" class="show"></div>
+		<div id="overlay" class=""></div>
 
-		<div id="add_modal" class="modal show">
+		<div id="add_modal" class="modal">
 			<h1 id="title">Nouveau personnage</h1>
 
 			<button id="close_button">
@@ -244,51 +117,43 @@
 					<label for="first_name">Prénom<sup>*</sup> :</label>
 					<input type="text" id="first_name" name="first_name" autocomplete="off">
 				</div>
-
 				<div class="field">
 					<label for="last_name">Nom de famille :</label>
 					<input type="text" id="last_name" name="last_name" autocomplete="off">
 				</div>
-
 				<div class="field">
 					<span>Sexe<sup>*</sup> :</span>
 					<div>
 						<div class="choice">
-							<input type="radio" name="gender" value="Homme" id="man" checked>
+							<input type="radio" name="gender" value="M" id="man" checked>
 							<label for="man">Homme</label>
 						</div>
 						<div class="choice">
-							<input type="radio" name="gender" value="Femme" id="woman">
+							<input type="radio" name="gender" value="F" id="woman">
 							<label for="woman">Femme</label>
 						</div>
 					</div>
 				</div>
-
 				<div class="field">
 					<label for="work">Œuvre<sup>*</sup> :</label>
 					<input type="text" id="work" name="work" autocomplete="off">
 				</div>
-
 				<div class="field">
 					<label for="actor">Acteur :</label>
 					<input type="text" id="actor" name="actor" autocomplete="off">
 				</div>
-
 				<div class="field">
 					<label for="voice_actor">Doubleur :</label>
 					<input type="text" id="voice_actor" name="voice_actor" autocomplete="off">
 				</div>
-
 				<div class="field">
 					<label for="profile">Image de profil :</label>
 					<input type="text" id="profile" name="profile" autocomplete="off">
 				</div>
-
 				<div class="field">
 					<label for="comment">Commentaire :</label>
 					<textarea id="comment" name="comment" rows="3" autocomplete="off"></textarea>
 				</div>
-
 				<div class="field">
 					<span>Appréciation<sup>*</sup> :</span>
 					<div>

@@ -60,6 +60,9 @@ div.choice {
 
 input[type="text"], input[type="password"] {
 	width: 300px;
+	text-align: center;
+	font-family: "Times New Roman", serif;
+	font-size: medium;
 	border: 1px solid grey;
 }
 

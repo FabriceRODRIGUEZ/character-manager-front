@@ -160,9 +160,13 @@ button#submit_button:hover {
 
 /* - - - */
 
-/* @media(max-width: 600px) {
+@media(max-width: 600px) {
 
-} */
+	div.modal {
+		width: calc(100vw - 20px);
+	}
+
+}
 
 /* - - - */
 

@@ -13,7 +13,6 @@ export default class AuthService extends ApiService {
             headers: { "Content-Type": "application/json",
                        "authorization": `Bearer ${this.token}` }
         })
-        // return (response.status == 200) ? true : false
     }
 
     async signup(user) {
