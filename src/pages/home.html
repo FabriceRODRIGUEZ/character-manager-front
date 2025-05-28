@@ -51,7 +51,7 @@
 		</nav>
 
 		<div id="characters_list">
-			<template>
+			<template id="character_template">
 				<div class="character">
 					<div class="profile">
 						<img src="../../res/images/profile.png" alt="Image de profil">
@@ -60,20 +60,20 @@
 					<div class="description">
 						<div class="property">
 							<span class="property_name">Nom :</span>
-							<span class="first_name">(Prénom)</span>
-							<span class="last_name">(Nom)</span>
+							<span class="first_name"></span>
+							<span class="last_name"></span>
 						</div>
 						<div class="property">
 							<span class="property_name">Œuvre :</span>
-							<span>(Œuvre)</span>
+							<span></span>
 						</div>
 						<div class="property">
 							<span class="property_name">Acteur :</span>
-							<span>(Acteur)</span>
+							<span></span>
 						</div>
 						<div class="property">
 							<span class="property_name">Doubleur :</span>
-							<span>(Doubleur)</span>
+							<span></span>
 						</div>
 						<div class="property">
 							<span class="property_name">Appréciation :</span>
@@ -96,14 +96,14 @@
 		</div>
 
 		<div id="message">
-			Veuillez vous connecter ou rechercher une liste publique
+			Veuillez vous connecter pour afficher une liste
 		</div>
 
 		<footer>
 			<a id="mentions">Mentions légales</a>
 		</footer>
 
-		<div id="overlay" class=""></div>
+		<div id="overlay"></div>
 
 		<div id="add_modal" class="modal">
 			<h1 id="title">Nouveau personnage</h1>
@@ -112,16 +112,16 @@
 				<img src="../../res/icons/cross.ico" alt="Croix">
 			</button>
 
-			<form onsubmit="return false">
+			<form>
 				<div class="field">
 					<label for="first_name">Prénom<sup>*</sup> :</label>
-					<input type="text" id="first_name" name="first_name" autocomplete="off">
+					<input type="text" id="first_name" name="first_name" autocomplete="off" spellcheck="false">
 				</div>
 				<div class="field">
 					<label for="last_name">Nom de famille :</label>
-					<input type="text" id="last_name" name="last_name" autocomplete="off">
+					<input type="text" id="last_name" name="last_name" autocomplete="off" spellcheck="false">
 				</div>
-				<div class="field">
+				<div class="field" id="gender_field">
 					<span>Sexe<sup>*</sup> :</span>
 					<div>
 						<div class="choice">
@@ -136,25 +136,25 @@
 				</div>
 				<div class="field">
 					<label for="work">Œuvre<sup>*</sup> :</label>
-					<input type="text" id="work" name="work" autocomplete="off">
+					<input type="text" id="work" name="work" autocomplete="off" spellcheck="false">
 				</div>
 				<div class="field">
 					<label for="actor">Acteur :</label>
-					<input type="text" id="actor" name="actor" autocomplete="off">
+					<input type="text" id="actor" name="actor" autocomplete="off" spellcheck="false">
 				</div>
 				<div class="field">
 					<label for="voice_actor">Doubleur :</label>
-					<input type="text" id="voice_actor" name="voice_actor" autocomplete="off">
+					<input type="text" id="voice_actor" name="voice_actor" autocomplete="off" spellcheck="false">
 				</div>
 				<div class="field">
 					<label for="profile">Image de profil :</label>
-					<input type="text" id="profile" name="profile" autocomplete="off">
+					<input type="text" id="profile" name="profile" autocomplete="off" spellcheck="false">
 				</div>
 				<div class="field">
 					<label for="comment">Commentaire :</label>
-					<textarea id="comment" name="comment" rows="3" autocomplete="off"></textarea>
+					<textarea id="comment" name="comment" rows="3" autocomplete="off" spellcheck="false"></textarea>
 				</div>
-				<div class="field">
+				<div class="field" id="appreciation_field">
 					<span>Appréciation<sup>*</sup> :</span>
 					<div>
 						<div class="choice">

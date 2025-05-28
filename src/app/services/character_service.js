@@ -7,6 +7,14 @@ export default class CharacterService extends ApiService {
         super()
     }
 
+    async getCharacters() {
+        const response =  await fetch(`${this.apiUrl}/characters`, {
+            method: "GET",
+            headers: this.headers
+        })
+        return response.json()
+    }
+
     async addCharacter(character) {
         return await fetch(`${this.apiUrl}/characters`, {
             method: "POST",
