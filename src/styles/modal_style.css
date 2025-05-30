@@ -40,7 +40,13 @@ h1#title {
 	display: block;
 	margin: 0 auto 20px;
 	width: max-content;
+	font-size: x-large;
 	text-decoration: underline;
+}
+
+div#delete_modal p {
+	margin: 7px 0 20px;
+	font-weight: bold;
 }
 
 button#close_button {
@@ -132,21 +138,33 @@ input[type="radio"]:hover {
 	cursor: pointer;
 }
 
+/* Bottom : */
+
 div#legend {
 	position: absolute;
 	left: 20px;
-	bottom: 20px;
-	padding-bottom: 4px;
+	bottom: 25px;
 	font-size: smaller;
 	color: crimson;
+}
+
+div#filter_modal a {
+	position: absolute;
+	right: 20px;
+	bottom: 27px;
+	font-size: smaller;
+	font-weight: bold;
+	text-decoration: underline;
+	color: sienna;
+	cursor: pointer;
 }
 
 button#submit_button {
 	margin: 0px;
 	margin-left: 50%;
 	translate: -50%;
-	padding: 5px 10px;
-	cursor: pointer;
+	padding: 5px 20px;
+	font-family: "Times New Roman", serif;
 	font-weight: bold;
 	border: 2px solid black;
 	border-radius: 5px;
@@ -178,3 +196,4 @@ button#submit_button:hover {
 /* div.field > span + div { border: 2px solid black; } */
 /* div.choice { border: 2px solid black; } */
 /* div#legend { border: 2px solid black; } */
+/* div#filter_modal a { border: 2px solid black; } */

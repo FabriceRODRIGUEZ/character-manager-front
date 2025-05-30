@@ -50,7 +50,7 @@
 			</div>
 		</nav>
 
-		<div id="characters_list">
+		<div id="characters_list" style="visibility: visible;">
 			<template id="character_template">
 				<div class="character">
 					<div class="profile">
@@ -105,87 +105,269 @@
 
 		<div id="overlay"></div>
 
-		<div id="add_modal" class="modal">
-			<h1 id="title">Nouveau personnage</h1>
+		<template id="add_modal_template">
+			<div id="add_modal" class="modal">
+				<h1 id="title">Nouveau personnage</h1>
 
-			<button id="close_button">
-				<img src="../../res/icons/cross.ico" alt="Croix">
-			</button>
+				<button id="close_button">
+					<img src="../../res/icons/cross.ico" alt="Croix">
+				</button>
 
-			<form>
-				<div class="field">
-					<label for="first_name">Prénom<sup>*</sup> :</label>
-					<input type="text" id="first_name" name="first_name" autocomplete="off" spellcheck="false">
-				</div>
-				<div class="field">
-					<label for="last_name">Nom de famille :</label>
-					<input type="text" id="last_name" name="last_name" autocomplete="off" spellcheck="false">
-				</div>
-				<div class="field" id="gender_field">
-					<span>Sexe<sup>*</sup> :</span>
-					<div>
-						<div class="choice">
-							<input type="radio" name="gender" value="M" id="man" checked>
-							<label for="man">Homme</label>
-						</div>
-						<div class="choice">
-							<input type="radio" name="gender" value="F" id="woman">
-							<label for="woman">Femme</label>
+				<form>
+					<div class="field">
+						<label for="first_name">Prénom<sup>*</sup> :</label>
+						<input type="text" id="first_name" name="first_name" autocomplete="off" spellcheck="false">
+					</div>
+					<div class="field">
+						<label for="last_name">Nom de famille :</label>
+						<input type="text" id="last_name" name="last_name" autocomplete="off" spellcheck="false">
+					</div>
+					<div class="field" id="gender_field">
+						<span>Sexe<sup>*</sup> :</span>
+						<div>
+							<div class="choice">
+								<input type="radio" name="gender" value="M" id="man" checked>
+								<label for="man">Homme</label>
+							</div>
+							<div class="choice">
+								<input type="radio" name="gender" value="F" id="woman">
+								<label for="woman">Femme</label>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="field">
-					<label for="work">Œuvre<sup>*</sup> :</label>
-					<input type="text" id="work" name="work" autocomplete="off" spellcheck="false">
-				</div>
-				<div class="field">
-					<label for="actor">Acteur :</label>
-					<input type="text" id="actor" name="actor" autocomplete="off" spellcheck="false">
-				</div>
-				<div class="field">
-					<label for="voice_actor">Doubleur :</label>
-					<input type="text" id="voice_actor" name="voice_actor" autocomplete="off" spellcheck="false">
-				</div>
-				<div class="field">
-					<label for="profile">Image de profil :</label>
-					<input type="text" id="profile" name="profile" autocomplete="off" spellcheck="false">
-				</div>
-				<div class="field">
-					<label for="comment">Commentaire :</label>
-					<textarea id="comment" name="comment" rows="3" autocomplete="off" spellcheck="false"></textarea>
-				</div>
-				<div class="field" id="appreciation_field">
-					<span>Appréciation<sup>*</sup> :</span>
-					<div>
-						<div class="choice">
-							<input type="radio" name="appreciation" value="1" id="1_star" checked>
-							<label for="1_star">
-								<img src="../../res/icons/star.ico" alt="Étoile">
-							</label>
-						</div>
-						<div class="choice">
-							<input type="radio" name="appreciation" value="2" id="2_stars">
-							<label for="2_stars">
-								<img src="../../res/icons/star.ico" alt="Étoile">
-								<img src="../../res/icons/star.ico" alt="Étoile">
-							</label>
-						</div>
-						<div class="choice">
-							<input type="radio" name="appreciation" value="3" id="3_stars">
-							<label for="3_stars">
-								<img src="../../res/icons/star.ico" alt="Étoile">
-								<img src="../../res/icons/star.ico" alt="Étoile">
-								<img src="../../res/icons/star.ico" alt="Étoile">
-							</label>
+					<div class="field">
+						<label for="work">Œuvre<sup>*</sup> :</label>
+						<input type="text" id="work" name="work" autocomplete="off" spellcheck="false">
+					</div>
+					<div class="field">
+						<label for="actor">Acteur :</label>
+						<input type="text" id="actor" name="actor" autocomplete="off" spellcheck="false">
+					</div>
+					<div class="field">
+						<label for="voice_actor">Doubleur :</label>
+						<input type="text" id="voice_actor" name="voice_actor" autocomplete="off" spellcheck="false">
+					</div>
+					<div class="field">
+						<label for="profile">Image de profil :</label>
+						<input type="text" id="profile" name="profile" autocomplete="off" spellcheck="false">
+					</div>
+					<div class="field">
+						<label for="comment">Commentaire :</label>
+						<textarea id="comment" name="comment" rows="3" autocomplete="off" spellcheck="false"></textarea>
+					</div>
+					<div class="field" id="appreciation_field">
+						<span>Appréciation<sup>*</sup> :</span>
+						<div>
+							<div class="choice">
+								<input type="radio" name="appreciation" value="1" id="1_star" checked>
+								<label for="1_star">
+									<img src="../../res/icons/star.ico" alt="Étoile">
+								</label>
+							</div>
+							<div class="choice">
+								<input type="radio" name="appreciation" value="2" id="2_stars">
+								<label for="2_stars">
+									<img src="../../res/icons/star.ico" alt="Étoile">
+									<img src="../../res/icons/star.ico" alt="Étoile">
+								</label>
+							</div>
+							<div class="choice">
+								<input type="radio" name="appreciation" value="3" id="3_stars">
+								<label for="3_stars">
+									<img src="../../res/icons/star.ico" alt="Étoile">
+									<img src="../../res/icons/star.ico" alt="Étoile">
+									<img src="../../res/icons/star.ico" alt="Étoile">
+								</label>
+							</div>
 						</div>
 					</div>
-				</div>
-			</form>
+				</form>
 
-			<div id="legend"><sup>*</sup> Champ obligatoire</div>
+				<div id="legend"><sup>*</sup> Champ obligatoire</div>
 
-			<button id="submit_button">Ajouter</button>
-		</div>
+				<button id="submit_button">Ajouter</button>
+			</div>
+		</template>
+
+		<template id="edit_modal_template">
+			<div id="edit_modal" class="modal">
+				<h1 id="title">Édition de personnage</h1>
+
+				<button id="close_button">
+					<img src="../../res/icons/cross.ico" alt="Croix">
+				</button>
+
+				<form>
+					<div class="field">
+						<label for="first_name">Prénom<sup>*</sup> :</label>
+						<input type="text" id="first_name" name="first_name" autocomplete="off" spellcheck="false">
+					</div>
+					<div class="field">
+						<label for="last_name">Nom de famille :</label>
+						<input type="text" id="last_name" name="last_name" autocomplete="off" spellcheck="false">
+					</div>
+					<div class="field" id="gender_field">
+						<span>Sexe<sup>*</sup> :</span>
+						<div>
+							<div class="choice">
+								<input type="radio" name="gender" value="M" id="man" checked>
+								<label for="man">Homme</label>
+							</div>
+							<div class="choice">
+								<input type="radio" name="gender" value="F" id="woman">
+								<label for="woman">Femme</label>
+							</div>
+						</div>
+					</div>
+					<div class="field">
+						<label for="work">Œuvre<sup>*</sup> :</label>
+						<input type="text" id="work" name="work" autocomplete="off" spellcheck="false">
+					</div>
+					<div class="field">
+						<label for="actor">Acteur :</label>
+						<input type="text" id="actor" name="actor" autocomplete="off" spellcheck="false">
+					</div>
+					<div class="field">
+						<label for="voice_actor">Doubleur :</label>
+						<input type="text" id="voice_actor" name="voice_actor" autocomplete="off" spellcheck="false">
+					</div>
+					<div class="field">
+						<label for="profile">Image de profil :</label>
+						<input type="text" id="profile" name="profile" autocomplete="off" spellcheck="false">
+					</div>
+					<div class="field">
+						<label for="comment">Commentaire :</label>
+						<textarea id="comment" name="comment" rows="3" autocomplete="off" spellcheck="false"></textarea>
+					</div>
+					<div class="field" id="appreciation_field">
+						<span>Appréciation<sup>*</sup> :</span>
+						<div>
+							<div class="choice">
+								<input type="radio" name="appreciation" value="1" id="1_star" checked>
+								<label for="1_star">
+									<img src="../../res/icons/star.ico" alt="Étoile">
+								</label>
+							</div>
+							<div class="choice">
+								<input type="radio" name="appreciation" value="2" id="2_stars">
+								<label for="2_stars">
+									<img src="../../res/icons/star.ico" alt="Étoile">
+									<img src="../../res/icons/star.ico" alt="Étoile">
+								</label>
+							</div>
+							<div class="choice">
+								<input type="radio" name="appreciation" value="3" id="3_stars">
+								<label for="3_stars">
+									<img src="../../res/icons/star.ico" alt="Étoile">
+									<img src="../../res/icons/star.ico" alt="Étoile">
+									<img src="../../res/icons/star.ico" alt="Étoile">
+								</label>
+							</div>
+						</div>
+					</div>
+				</form>
+
+				<div id="legend"><sup>*</sup> Champ obligatoire</div>
+
+				<button id="submit_button">Éditer</button>
+			</div>
+		</template>
+
+		<template id="delete_modal_template">
+			<div id="delete_modal" class="modal">
+				<button id="close_button">
+					<img src="../../res/icons/cross.ico" alt="Croix">
+				</button>
+				
+				<p>Voulez-vous vraiment supprimer ce personnage ?</p>
+				
+				<button id="submit_button">Supprimer</button>
+			</div>
+		</template>
+
+		<template id="filter_modal_template">
+			<div id="filter_modal" class="modal">
+				<h1 id="title">Filtrage de la liste</h1>
+
+				<button id="close_button">
+					<img src="../../res/icons/cross.ico" alt="Croix">
+				</button>
+
+				<form>
+					<div class="field">
+						<label for="first_name">Prénom :</label>
+						<input type="text" id="first_name" name="first_name" autocomplete="off" spellcheck="false">
+					</div>
+					<div class="field">
+						<label for="last_name">Nom de famille :</label>
+						<input type="text" id="last_name" name="last_name" autocomplete="off" spellcheck="false">
+					</div>
+					<div class="field" id="gender_field">
+						<span>Sexe :</span>
+						<div>
+							<div class="choice">
+								<input type="radio" name="gender" value="M" id="man" checked>
+								<label for="man">Homme</label>
+							</div>
+							<div class="choice">
+								<input type="radio" name="gender" value="F" id="woman">
+								<label for="woman">Femme</label>
+							</div>
+						</div>
+					</div>
+					<div class="field">
+						<label for="work">Œuvre :</label>
+						<input type="text" id="work" name="work" autocomplete="off" spellcheck="false">
+					</div>
+					<div class="field">
+						<label for="actor">Acteur :</label>
+						<input type="text" id="actor" name="actor" autocomplete="off" spellcheck="false">
+					</div>
+					<div class="field">
+						<label for="voice_actor">Doubleur :</label>
+						<input type="text" id="voice_actor" name="voice_actor" autocomplete="off" spellcheck="false">
+					</div>
+					<div class="field">
+						<label for="profile">Image de profil :</label>
+						<input type="text" id="profile" name="profile" autocomplete="off" spellcheck="false">
+					</div>
+					<div class="field">
+						<label for="comment">Commentaire :</label>
+						<input type="text" id="comment" name="comment" autocomplete="off" spellcheck="false">
+					</div>
+					<div class="field" id="appreciation_field">
+						<span>Appréciation :</span>
+						<div>
+							<div class="choice">
+								<input type="radio" name="appreciation" value="1" id="1_star" checked>
+								<label for="1_star">
+									<img src="../../res/icons/star.ico" alt="Étoile">
+								</label>
+							</div>
+							<div class="choice">
+								<input type="radio" name="appreciation" value="2" id="2_stars">
+								<label for="2_stars">
+									<img src="../../res/icons/star.ico" alt="Étoile">
+									<img src="../../res/icons/star.ico" alt="Étoile">
+								</label>
+							</div>
+							<div class="choice">
+								<input type="radio" name="appreciation" value="3" id="3_stars">
+								<label for="3_stars">
+									<img src="../../res/icons/star.ico" alt="Étoile">
+									<img src="../../res/icons/star.ico" alt="Étoile">
+									<img src="../../res/icons/star.ico" alt="Étoile">
+								</label>
+							</div>
+						</div>
+					</div>
+				</form>
+
+				<a>Réinitialiser les filtres</a>
+
+				<button id="submit_button">Filtrer</button>
+			</div>
+		</template>
 
 	</body>
 
