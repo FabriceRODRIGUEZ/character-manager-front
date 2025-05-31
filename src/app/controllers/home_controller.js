@@ -3,12 +3,22 @@ import AuthService from "../services/auth_service.js"
 import CharacterService from "../services/character_service.js"
 
 
+/**
+ * A controller for the home page
+ * @property {CharacterService} service
+ */
 class HomeController {
 
+    /**
+     * Constructor of the home controller
+     */
     constructor() {
         this.service = new CharacterService()
     }
 
+    /**
+     * Displays the right version of the page
+     */
     async start() {
         const authentication = await new AuthService().authenticate()
         const isAuthentified = (authentication.status == 200) ? true : false
@@ -17,6 +27,9 @@ class HomeController {
         else this.displayAuthentifiedVersion()
     }
 
+    /**
+     * Displays the version for an unauthentified user
+     */
     displayUnauthentifiedVersion() {
         const addButton = document.querySelector("button#add_button")
         const filterButton = document.querySelector("button#filter_button")
@@ -43,6 +56,9 @@ class HomeController {
         message.style.display = "block"
     }
 
+    /**
+     * Displays the version for an authentified user
+     */
     displayAuthentifiedVersion() {
         const addButton = document.querySelector("button#add_button")
         const loginButton = document.querySelector("button#login_button")
@@ -57,6 +73,9 @@ class HomeController {
         this.displayCharactersList()
     }
 
+    /**
+     * Displays the list of characters
+     */
     async displayCharactersList() {
         const list = document.querySelector("div#characters_list")
         const characters = await this.service.getCharacters()
@@ -82,6 +101,9 @@ class HomeController {
     // Modal methods
     // #############
 
+    /**
+     * Shows the add modal and activates the event listeners
+     */
     showAddModal() {
         const overlay = document.querySelector("div#overlay")
         const addModal = document.querySelector("div#add_modal")
@@ -100,12 +122,19 @@ class HomeController {
         }))
     }
 
+    /**
+     * Submits the form of the add modal, then close the modal
+     */
     submitAddModal() {
         this.addCharacter()
         this.resetFields("add_modal")
         this.closeModal("add_modal")
     }
 
+    /**
+     * Resets the fields of a modal form
+     * @param {string} modalId
+     */
     resetFields(modalId) {
         document.querySelectorAll(`#${modalId} input[type='text'], #${modalId} textarea`)
                 .forEach(textInput => textInput.value = "")
@@ -113,6 +142,10 @@ class HomeController {
         document.querySelector(`#${modalId} input[name='appreciation']`).checked = true
     }
 
+    /**
+     * Closes a modal
+     * @param {string} modalId
+     */
     closeModal(modalId) {
         document.getElementById(modalId).classList.remove("show")
         document.getElementById("overlay").classList.remove("show")
@@ -122,6 +155,9 @@ class HomeController {
     // Action methods
     // ##############
 
+    /**
+     * Creates a character from the fields and adds it to the database
+     */
     async addCharacter() {
         const properties = []
         const formInputs = document.querySelectorAll("input[type='text'], input[type='radio']:checked, textarea")
@@ -144,6 +180,10 @@ class HomeController {
         return document.getElementById(templateId).content.cloneNode(true)
     }
 
+    /**
+     * Activates the hidden buttons display for a character
+     * @param {Element} character
+     */
     activateCharacterHover(character) {
         character.addEventListener("mouseenter", event => {
             const hiddenButtons = event.target.children[2]
