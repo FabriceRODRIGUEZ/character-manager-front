@@ -81,20 +81,39 @@ class HomeController {
         const characters = await this.service.getCharacters()
 
         characters.forEach(character => {
-            const characterElement = this.cloneTemplate("character_template")
-            // characterElement.childNodes[1].children[0].children[0].src = "../../res/images/profile.png"
-            // characterElement.childNodes[1].children[1].children[0].children[1].innerText = character.first_name
-            // characterElement.childNodes[1].children[1].children[0].children[2].innerText = character.last_name
-            // characterElement.childNodes[1].children[1].children[1].children[1].innerText = character.work
-            // characterElement.childNodes[1].children[1].children[2].children[1].innerText = character.actor
-            // characterElement.childNodes[1].children[1].children[3].children[1].innerText = character.voice_actor
-            // const star = characterElement.childNodes[1].children[1].children[4].children[1].children[0]
-            // characterElement.childNodes[1].children[1].children[4].children[1].appendChild()
-            list.appendChild(characterElement)
+            const element = this.cloneTemplate("character_template")
+            this.fillCharacterElement(element, character)
+            list.appendChild(element)
         })
 
         document.querySelectorAll("div.character")
                 .forEach(character => this.activateCharacterHover(character))
+    }
+
+    /**
+     * Fills a character element with the properties of a character
+     * @param {Element} element
+     * @param {Object} character
+     */
+    fillCharacterElement(element, character) {
+        if (character.gender == "F") {
+            element.querySelector("div.property:nth-child(3) > span.property_name").innerHTML = "Actrice :"
+            element.querySelector("div.property:nth-child(4) > span.property_name").innerHTML = "Doubleuse :"
+        }
+
+        if (character.profile) element.querySelector("div.profile img").src = character.profile
+        if (character.first_name) element.querySelector("span.first_name").innerHTML = character.first_name
+        if (character.last_name) element.querySelector("span.last_name").innerHTML = character.last_name
+        if (character.work) element.querySelector("span.work").innerHTML = character.work
+        if (character.actor) element.querySelector("span.actor").innerHTML = character.actor
+        if (character.voice_actor) element.querySelector("span.voice_actor").innerHTML = character.voice_actor
+
+        for (let i = 1 ; i <= character.appreciation ; i++) {
+            const star = new Image()
+            star.src = "../../res/icons/star.ico"
+            star.alt = "Étoile"
+            element.querySelector("div.appreciation").appendChild(star)
+        }
     }
 
     // #############
