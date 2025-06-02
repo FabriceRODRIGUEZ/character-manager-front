@@ -53,16 +53,6 @@ div.field > span {
 	cursor: default;
 }
 
-div#visibility_field > div {
-	display: flex;
-	gap: 20px;
-}
-
-div.choice {
-	display: flex;
-	align-items: center;
-}
-
 input[type="text"], input[type="password"] {
 	width: 250px;
 	text-align: center;
@@ -71,19 +61,23 @@ input[type="text"], input[type="password"] {
 	border: 1px solid grey;
 }
 
-input[type="radio"] {
-	margin-left: 0px;
-}
-
-input[type="radio"]:checked {
-	accent-color: black;
-}
-
-input[type="radio"]:hover {
-	cursor: pointer;
-}
-
 /* Bottom : */
+
+a#forgotten_password {
+	display: block;
+	margin-top: 20px;
+	margin-left: 50%;
+	translate: -50%;
+	width: max-content;
+	font-size: smaller;
+	font-weight: bold;
+	color: sienna;
+}
+
+a#forgotten_password:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
 
 button#submit_button {
 	margin-top: 10px;
@@ -104,6 +98,26 @@ button#submit_button:hover {
 	/* ... */
 }
 
+button#new_user {
+	margin-top: 10px;
+	margin-left: 50%;
+	translate: -50%;
+	padding: 5px 20px;
+	width: max-content;
+	font-family: "Times New Roman", serif;
+	font-weight: bold;
+	border: 2px solid black;
+	border-radius: 5px;
+	background-color: #F6E9D6;
+	/* ... */
+}
+
+button#new_user:hover {
+	cursor: pointer;
+	background-color: #EDD3AC;
+	/* ... */
+}
+
 /* - - - */
 
 @media(max-width: 600px) {
@@ -117,3 +131,4 @@ button#submit_button:hover {
 /* form { border: 2px solid black; } */
 /* div.field { border: 2px solid black; } */
 /* div#visibility_field > div { border: 2px solid black; } */
+/* a#forgotten_password { border: 2px solid black; } */
