@@ -5,51 +5,49 @@
 		<meta charset=UTF-8>
 		<title>Inscription</title>
 		<link rel="icon" href="../../res/icons/logo.ico">
-		<link rel="stylesheet" href="../styles/window_style.css">
+		<link rel="stylesheet" href="../styles/signup_style.css">
 		<script type="module" src="../app/controllers/signup_controller.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 
 	<body>
 		<div id="window">
-
 			<h1 id="title">Nouvel utilisateur</h1>
 
-			<form onsubmit="return false">
+			<form>
 				<div class="field">
 					<label for="username">Nom d'utilisateur :</label>
-					<input type="text" id="username" name="username" autocomplete="off" required>
+					<input type="text" id="username" name="username" autocomplete="off" spellcheck="false">
 				</div>
 
 				<div class="field">
 					<label for="email">Adresse email :</label>
-					<input type="text" id="email" name="email" autocomplete="off" required>
+					<input type="text" id="email" name="email" autocomplete="off" spellcheck="false">
 				</div>
 
 				<div class="field">
 					<label for="password">Mot de passe :</label>
-					<input type="password" id="password" name="password" autocomplete="off" required>
+					<input type="password" id="password" name="password" autocomplete="off" spellcheck="false">
 				</div>
 
 				<div id="visibility_field" class="field">
 					<span>Visibilité du compte :</span>
 					<div>
 						<div class="choice">
-							<input type="radio" name="visibility" value="private" id="private" checked required>
+							<input type="radio" name="visibility" value="private" id="private" checked>
 							<label for="private">Privé</label>
 						</div>
 						<div class="choice">
-							<input type="radio" name="visibility" value="public" id="public" required>
+							<input type="radio" name="visibility" value="public" id="public">
 							<label for="public">Public</label>
 						</div>
 					</div>
 				</div>
-
-				<button id="submit_button">
-					Créer le compte
-				</button>
 			</form>
 
+			<button id="submit_button">
+				Créer le compte
+			</button>
 		</div>
 	</body>
 

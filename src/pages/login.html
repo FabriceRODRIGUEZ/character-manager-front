@@ -5,40 +5,38 @@
 		<meta charset=UTF-8>
 		<title>Connexion</title>
 		<link rel="icon" href="../../res/icons/logo.ico">
-		<link rel="stylesheet" href="../styles/window_style.css">
+		<link rel="stylesheet" href="../styles/signup_style.css">
 		<script type="module" src="../app/controllers/login_controller.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 
 	<body>
 		<div id="window">
-
 			<h1 id="title">Connexion</h1>
 
-			<form onsubmit="return false">
+			<form>
 				<div class="field">
 					<label for="user_id">Nom d'utilisateur ou adresse email :</label>
-					<input type="text" id="user_id" name="user_id" autocomplete="off" required>
+					<input type="text" id="user_id" name="user_id" autocomplete="off" spellcheck="false">
 				</div>
 
 				<div class="field">
 					<label for="password">Mot de passe :</label>
-					<input type="password" id="password" name="password" autocomplete="off" required>
+					<input type="password" id="password" name="password" autocomplete="off" spellcheck="false">
 				</div>
-
-				<!-- <a id="forgotten_password" href="./forgotten-password.html">
-					Mot de passe oublié
-				</a> -->
-
-				<button id="submit_button">
-					Se connecter
-				</button>
 			</form>
+
+			<!-- <a id="forgotten_password">
+				Mot de passe oublié
+			</a> -->
+
+			<button id="submit_button">
+				Se connecter
+			</button>
 
 			<button id="new_user">
 				Nouvel utilisateur
 			</button>
-
 		</div>
 	</body>
 

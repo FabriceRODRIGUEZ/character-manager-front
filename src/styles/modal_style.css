@@ -148,7 +148,7 @@ div#legend {
 	color: crimson;
 }
 
-div#filter_modal a {
+a#reset_link {
 	position: absolute;
 	right: 20px;
 	bottom: 27px;
@@ -157,7 +157,7 @@ div#filter_modal a {
 	color: sienna;
 }
 
-div#filter_modal a:hover {
+a#reset_link:hover {
 	cursor: pointer;
 	text-decoration: underline;
 }
@@ -177,15 +177,16 @@ button#submit_button {
 button#submit_button:hover {
 	cursor: pointer;
 	background-color: #D3A05F;
+	/* ... */
 }
 
 /* - - - */
 
 @media(max-width: 600px) {
 
-	div.modal {
-		width: calc(100vw - 20px);
-	}
+	/* div.modal {
+		width: calc(100vw - 40px);
+	} */
 
 }
 
@@ -199,4 +200,4 @@ button#submit_button:hover {
 /* div.field > span + div { border: 2px solid black; } */
 /* div.choice { border: 2px solid black; } */
 /* div#legend { border: 2px solid black; } */
-/* div#filter_modal a { border: 2px solid black; } */
+/* a#reset_link { border: 2px solid black; } */

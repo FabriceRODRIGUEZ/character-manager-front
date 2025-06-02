@@ -21,6 +21,7 @@ div#account_section {
 nav button {
 	height: min-content;
 	padding: 0px;
+	font-family: "Times New Roman", serif;
 	font-weight: bold;
 	border: 2px solid black;
 	border-radius: 5px;
@@ -30,6 +31,7 @@ nav button {
 nav button.active:hover {
 	cursor: pointer;
 	background-color: #F4D4AA;
+	/* ... */
 }
 
 nav button > div.filter {
@@ -64,6 +66,7 @@ button#add_button img {
 
 div#sort_section > select {
 	padding: 2px;
+	font-family: "Times New Roman", serif;
 	font-weight: bold;
 	color: black;
 	border: 2px solid black;
@@ -73,14 +76,29 @@ div#sort_section > select {
 
 div#sort_section > select.inactive {
 	background-color: #7D756B;
+	/* ... */
 }
 
 div#sort_section > select:hover {
 	cursor: pointer;
 	background-color: #F4D4AA;
+	/* ... */
 }
 
 div#sort_section > select.inactive:hover {
 	cursor: default;
 	background-color: #7D756B;
+	/* ... */
 }
+
+/* - - - */
+
+@media(max-width: 600px) {
+
+	/* div {} */
+
+}
+
+/* - - - */
+
+/* div { border: 2px solid black; } */

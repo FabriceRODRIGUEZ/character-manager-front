@@ -12,14 +12,13 @@
 
 	<body>
 		<div id="window">
-
 			<h1 id="title">Gestion du compte</h1>
 
-			<div id="form">
+			<form>
 				<div id="username_field" class="field">
 					<label for="username">Nom d'utilisateur :</label>
                     <div>
-                        <input type="text" id="username" name="username" placeholder="(username)" autocomplete="off">
+                        <input type="text" id="username" name="username" placeholder="" autocomplete="off" spellcheck="false">
                         <button class="update_button">Modifier</button>
                     </div>
 					
@@ -28,7 +27,7 @@
 				<div id="email_field" class="field">
 					<label for="email">Adresse email :</label>
                     <div>
-                        <input type="text" id="email" name="email" placeholder="(email)" autocomplete="off">
+                        <input type="text" id="email" name="email" placeholder="" autocomplete="off" spellcheck="false">
                         <button class="update_button">Modifier</button>
                     </div>
 				</div>
@@ -36,7 +35,7 @@
 				<div id="password_field" class="field">
 					<label for="password">Mot de passe :</label>
                     <div>
-                        <input type="password" id="password" name="password" placeholder="••••••••" autocomplete="off">
+                        <input type="password" id="password" name="password" autocomplete="off">
                         <button class="update_button">Modifier</button>
                     </div>
 				</div>
@@ -54,7 +53,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</form>
 
             <div>
 				<button id="logout_button">
@@ -65,7 +64,6 @@
 					Supprimer le compte
 				</button>
 			</div>
-
 		</div>
 	</body>
 

@@ -125,18 +125,29 @@ footer {
 	box-sizing: border-box;
 }
 
-footer a {
+a#mentions {
 	font-weight: bold;
 }
 
-footer > a:hover {
+a#mentions:hover {
 	text-decoration: underline;
 	cursor: pointer;
 }
 
 /* - - - */
 
+@media(max-width: 600px) {
+
+	/* div {} */
+
+}
+
+/* - - - */
+
+/* body { border: 2px solid black; } */
 /* div#characters_list { border: 2px solid crimson; } */
 /* div.profile { border: 2px solid black; } */
 /* div.description, div.property { border: 1px solid black; } */
 /* div.hidden_buttons { border: 2px solid black; } */
+/* p#copyright { border: 2px solid black; } */
+/* a#mentions { border: 2px solid black; } */

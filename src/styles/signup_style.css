@@ -10,7 +10,7 @@ div#window {
 	top: 50vh;
 	left: 50vw;
 	transform: translate(-50%, -50%);
-	width: max-content;
+	width: 300px;
 	padding: 15px 20px 20px;
 	border: 2px solid black;
 	box-shadow: 0 0 5px black;
@@ -25,19 +25,24 @@ h1#title {
 	text-decoration: underline;
 }
 
+/* Form : */
+
 form {
 	display: flex;
 	margin-top: 20px;
+	margin-bottom: 10px;
 	flex-direction: column;
 	align-items: center;
+	gap: 15px;
 }
 
 div.field {
 	display: flex;
-	margin-bottom: 15px;
+	width: 100%;
 	flex-direction: column;
 	align-items: center;
 	gap: 5px;
+	box-sizing: border-box;
 }
 
 div.field > label,
@@ -59,7 +64,7 @@ div.choice {
 }
 
 input[type="text"], input[type="password"] {
-	width: 300px;
+	width: 250px;
 	text-align: center;
 	font-family: "Times New Roman", serif;
 	font-size: medium;
@@ -78,16 +83,28 @@ input[type="radio"]:hover {
 	cursor: pointer;
 }
 
+/* Bottom : */
+
 a#forgotten_password {
 	display: block;
-	margin: 5px 0;
+	margin-top: 20px;
+	margin-left: 50%;
+	translate: -50%;
 	width: max-content;
+	font-size: smaller;
+	font-weight: bold;
 	color: sienna;
 }
 
-button#submit_button,
-button#new_user {
-	margin-top: 5px;
+a#forgotten_password:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+button#submit_button {
+	margin-top: 10px;
+	margin-left: 50%;
+	translate: -50%;
 	padding: 5px 20px;
 	width: max-content;
 	font-family: "Times New Roman", serif;
@@ -100,16 +117,40 @@ button#new_user {
 button#submit_button:hover {
 	cursor: pointer;
 	background-color: #D3A05F;
+	/* ... */
 }
 
 button#new_user {
 	margin-top: 10px;
 	margin-left: 50%;
-	transform: translate(-50%, 0);
+	translate: -50%;
+	padding: 5px 20px;
+	width: max-content;
+	font-family: "Times New Roman", serif;
+	font-weight: bold;
+	border: 2px solid black;
+	border-radius: 5px;
 	background-color: #F6E9D6;
+	/* ... */
 }
 
 button#new_user:hover {
 	cursor: pointer;
 	background-color: #EDD3AC;
+	/* ... */
 }
+
+/* - - - */
+
+@media(max-width: 600px) {
+
+	/* div {} */
+
+}
+
+/* - - - */
+
+/* form { border: 2px solid black; } */
+/* div.field { border: 2px solid black; } */
+/* div#visibility_field > div { border: 2px solid black; } */
+/* a#forgotten_password { border: 2px solid black; } */

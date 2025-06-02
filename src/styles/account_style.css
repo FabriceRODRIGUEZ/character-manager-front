@@ -27,9 +27,8 @@ h1#title {
 
 /* Form : */
 
-div#form {
+form {
 	display: flex;
-	margin: 20px 0;
 	flex-direction: column;
 	align-items: center;
 	gap: 15px;
@@ -37,9 +36,11 @@ div#form {
 
 div.field {
 	display: flex;
+	width: 100%;
 	flex-direction: column;
 	align-items: center;
 	gap: 5px;
+	box-sizing: border-box;
 }
 
 div.field > label,
@@ -68,7 +69,6 @@ div.choice {
 
 input[type="text"], input[type="password"] {
 	width: 250px;
-	text-align: center;
 	font-family: "Times New Roman", serif;
 	font-size: medium;
 	border: 1px solid grey;
@@ -94,20 +94,23 @@ button.update_button {
 	border: 2px solid black;
 	border-radius: 5px;
 	background-color: #F6E9D6;
+	/* ... */
 }
 
 button.update_button:hover {
 	cursor: pointer;
 	background-color: #EDD3AC;
+	/* ... */
 }
 
-/* Buttons : */
+/* Bottom : */
 
-div#form + div {
+form + div {
 	display: flex;
-	width: 100%;
 	margin-top: 20px;
-	justify-content: center;
+	margin-left: 50%;
+	translate: -50%;
+	width: max-content;
 	gap: 10px;
 }
 
@@ -124,14 +127,32 @@ button#delete_account_button {
 
 button#delete_account_button {
 	background-color: #F6E9D6;
+	/* ... */
 }
 
 button#logout_button:hover {
 	cursor: pointer;
 	background-color: #D3A05F;
+	/* ... */
 }
 
 button#delete_account_button:hover {
 	cursor: pointer;
 	background-color: #EDD3AC;
+	/* ... */
 }
+
+/* - - - */
+
+@media(max-width: 600px) {
+
+	/* div {} */
+
+}
+
+/* - - - */
+
+/* body { border: 2px solid black; } */
+/* form { border: 2px solid black; } */
+/* div.field { border: 2px solid black; } */
+/* form + div { border: 2px solid black; } */
