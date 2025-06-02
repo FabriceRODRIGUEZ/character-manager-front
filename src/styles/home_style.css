@@ -61,6 +61,8 @@ div.property:last-child {
 }
 
 div.appreciation {
+	display: flex;
+	gap: 2px;
 	cursor: default;
 }
 
@@ -116,8 +118,9 @@ footer {
 	height: 40px;
 	width: 100vw;
 	padding: 0 10px;
-	justify-content: end;
+	justify-content: space-between;
 	align-items: center;
+	font-size: smaller;
 	background-color: rgba(0, 0, 0, 0.4);
 	box-sizing: border-box;
 }

@@ -116,29 +116,33 @@ class HomeController {
         }
     }
 
-    // #############
-    // Modal methods
-    // #############
+    // ############# //
+    // Modal methods //
+    // ############# //
 
     /**
      * Shows the add modal and activates the event listeners
      */
     showAddModal() {
+        document.body.appendChild(this.cloneTemplate("add_modal_template"))
         const overlay = document.querySelector("div#overlay")
         const addModal = document.querySelector("div#add_modal")
-        const textInputs = document.querySelectorAll("#add_modal input[type='text'], textarea")
+        this.handleOverlayClick = () => this.closeModal("add_modal")
 
         overlay.classList.add("show")
-        addModal.classList.add("show")
+        setTimeout(() => addModal.classList.add("show"), 0)
 
-        overlay.addEventListener("click", () => this.closeModal("add_modal"))
+        overlay.addEventListener("click", this.handleOverlayClick)
+
         document.querySelector("#add_modal #close_button")
                 .addEventListener("click", () => this.closeModal("add_modal"))
+
         document.querySelector("#add_modal #submit_button")
                 .addEventListener("click", () => this.submitAddModal())
-        textInputs.forEach(textInput => textInput.addEventListener("keyup", (event) => {
-            if (event.key == "Enter") this.submitAddModal()
-        }))
+
+        document.querySelectorAll("#add_modal input[type='text'], textarea")
+                .forEach(textInput => textInput.addEventListener("keyup", (event) => {
+                    if (event.key == "Enter") this.submitAddModal() }))
     }
 
     /**
@@ -146,7 +150,6 @@ class HomeController {
      */
     submitAddModal() {
         this.addCharacter()
-        this.resetFields("add_modal")
         this.closeModal("add_modal")
     }
 
@@ -162,17 +165,22 @@ class HomeController {
     }
 
     /**
-     * Closes a modal
+     * Closes a modal according to its id
      * @param {string} modalId
      */
     closeModal(modalId) {
-        document.getElementById(modalId).classList.remove("show")
-        document.getElementById("overlay").classList.remove("show")
+        const modal = document.getElementById(modalId)
+        const overlay = document.getElementById("overlay")
+
+        modal.classList.remove("show")
+        overlay.classList.remove("show")
+        overlay.removeEventListener("click", this.handleOverlayClick)
+        setTimeout(() => document.getElementById(modalId).remove(), 400)
     }
 
-    // ##############
-    // Action methods
-    // ##############
+    // ############## //
+    // Action methods //
+    // ############## //
 
     /**
      * Creates a character from the fields and adds it to the database
@@ -186,9 +194,9 @@ class HomeController {
         await new CharacterService().addCharacter(character)
     }
 
-    // ############
-    // Tool methods
-    // ############
+    // ############ //
+    // Tool methods //
+    // ############ //
 
     /**
      * Creates an HTML element from a template id
