@@ -62,7 +62,7 @@ div.property:last-child {
 
 div.appreciation {
 	display: flex;
-	gap: 2px;
+	gap: 4px;
 	cursor: default;
 }
 

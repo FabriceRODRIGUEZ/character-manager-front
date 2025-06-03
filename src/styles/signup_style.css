@@ -9,7 +9,7 @@ div#window {
 	position: absolute;
 	top: 50vh;
 	left: 50vw;
-	transform: translate(-50%, -50%);
+	translate: -50% -50%;
 	width: 300px;
 	padding: 15px 20px 20px;
 	border: 2px solid black;
@@ -53,7 +53,7 @@ div.field > span {
 	cursor: default;
 }
 
-div#visibility_field > div {
+div.field > div {
 	display: flex;
 	gap: 20px;
 }
@@ -114,6 +114,9 @@ button#submit_button:hover {
 
 /* - - - */
 
+/* body { border: 2px solid black; } */
+/* h1#title { border: 2px solid black; } */
 /* form { border: 2px solid black; } */
 /* div.field { border: 2px solid black; } */
-/* div#visibility_field > div { border: 2px solid black; } */
+/* div.field > div { border: 2px solid black; } */
+/* div.choice { border: 2px solid black; } */

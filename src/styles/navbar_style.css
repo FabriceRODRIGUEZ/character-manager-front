@@ -61,7 +61,7 @@ button#add_button > div.filter {
 
 button#add_button img {
 	width: 20px;
-	height: auto;
+	height: 20px;
 }
 
 div#sort_section > select {
@@ -101,4 +101,5 @@ div#sort_section > select.inactive:hover {
 
 /* - - - */
 
-/* div { border: 2px solid black; } */
+/* div#sort_section { border: 2px solid black; } */
+/* div#account_section { border: 2px solid black; } */
