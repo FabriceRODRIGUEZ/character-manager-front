@@ -18,10 +18,22 @@ export default class CharacterService extends ApiService {
 
     /**
      * Returns the characters of a user
-     * @returns {Promise<Object>}
+     * @returns {Promise<Array>}
      */
     async getCharacters() {
-        const response =  await fetch(`${this.apiUrl}/characters`, {
+        const response = await fetch(`${this.apiUrl}/characters`, {
+            method: "GET",
+            headers: this.headers
+        })
+        return response.json()
+    }
+
+    /**
+     * Returns a character according to its id
+     * @returns {Promise<Object>}
+     */
+    async getCharacter(characterId) {
+        const response = await fetch(`${this.apiUrl}/characters/${characterId}`, {
             method: "GET",
             headers: this.headers
         })
@@ -36,6 +48,20 @@ export default class CharacterService extends ApiService {
     async addCharacter(character) {
         return await fetch(`${this.apiUrl}/characters`, {
             method: "POST",
+            headers: this.headers,
+            body: JSON.stringify(character)
+        })
+    }
+
+    /**
+     * Updates a character in the database
+     * @param {number} characterId
+     * @param {Character} character
+     * @returns {Promise<Response>}
+     */
+    async editCharacter(characterId, character) {
+        return await fetch(`${this.apiUrl}/characters/${characterId}`, {
+            method: "PATCH",
             headers: this.headers,
             body: JSON.stringify(character)
         })

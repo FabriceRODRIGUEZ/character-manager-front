@@ -6,6 +6,8 @@ import CharacterService from "../services/character_service.js"
 /**
  * A controller for the home page
  * @property {CharacterService} service
+ * @property {Element} overlay
+ * @property {() => void} handleOverlayClick
  */
 class HomeController {
 
@@ -14,6 +16,7 @@ class HomeController {
      */
     constructor() {
         this.service = new CharacterService()
+        this.overlay = document.querySelector("div#overlay")
     }
 
     /**
@@ -26,6 +29,11 @@ class HomeController {
         if (! isAuthentified) this.displayUnauthentifiedVersion()
         else this.displayAuthentifiedVersion()
     }
+
+
+    // #################### //
+    // Page version methods //
+    // #################### //
 
     /**
      * Displays the version for an unauthentified user
@@ -73,6 +81,11 @@ class HomeController {
         this.displayCharactersList()
     }
 
+
+    // ####################### //
+    // Characters list methods //
+    // ####################### //
+
     /**
      * Displays the list of characters
      */
@@ -81,106 +94,106 @@ class HomeController {
         const characters = await this.service.getCharacters()
 
         characters.forEach(character => {
-            const element = this.cloneTemplate("character_template")
-            this.fillCharacterElement(element, character)
-            list.appendChild(element)
+            const characterElement = this.cloneTemplate("character_template")
+            this.fillCharacterElement(characterElement, character)
+            list.appendChild(characterElement)
         })
 
         document.querySelectorAll("div.character")
-                .forEach(character => this.activateCharacterHover(character))
+                .forEach(characterElement => this.activateCharacterHover(characterElement))
     }
 
     /**
      * Fills a character element with the properties of a character
-     * @param {Element} element
+     * @param {Element} characterElement
      * @param {Object} character
      */
-    fillCharacterElement(element, character) {
+    fillCharacterElement(characterElement, character) {
         if (character.gender == "F") {
-            element.querySelector("div.property:nth-child(3) > span.property_name").innerHTML = "Actrice :"
-            element.querySelector("div.property:nth-child(4) > span.property_name").innerHTML = "Doubleuse :"
+            characterElement.querySelector("div.property:nth-child(3) > span.property_name").innerHTML = "Actrice :"
+            characterElement.querySelector("div.property:nth-child(4) > span.property_name").innerHTML = "Doubleuse :"
         }
 
-        if (character.profile) element.querySelector("div.profile img").src = character.profile
-        if (character.first_name) element.querySelector("span.first_name").innerHTML = character.first_name
-        if (character.last_name) element.querySelector("span.last_name").innerHTML = character.last_name
-        if (character.work) element.querySelector("span.work").innerHTML = character.work
-        if (character.actor) element.querySelector("span.actor").innerHTML = character.actor
-        if (character.voice_actor) element.querySelector("span.voice_actor").innerHTML = character.voice_actor
+        if (character.profile) characterElement.querySelector("div.profile img").src = character.profile
+        if (character.first_name) characterElement.querySelector("span.first_name").innerHTML = character.first_name
+        if (character.last_name) characterElement.querySelector("span.last_name").innerHTML = character.last_name
+        if (character.work) characterElement.querySelector("span.work").innerHTML = character.work
+        if (character.actor) characterElement.querySelector("span.actor").innerHTML = character.actor
+        if (character.voice_actor) characterElement.querySelector("span.voice_actor").innerHTML = character.voice_actor
 
         for (let i = 1 ; i <= character.appreciation ; i++) {
             const star = new Image()
             star.src = "../../res/icons/star.ico"
             star.alt = "Étoile"
-            element.querySelector("div.appreciation").appendChild(star)
+            characterElement.querySelector("div.appreciation").appendChild(star)
         }
+
+        characterElement.querySelector("button.edit_button")
+               .addEventListener("click", () => this.showEditModal(character.id))
     }
 
-    // ############# //
-    // Modal methods //
-    // ############# //
+    /**
+     * Activates the hidden buttons display for a character
+     * @param {Element} characterElement
+     */
+    activateCharacterHover(characterElement) {
+        characterElement.addEventListener("mouseenter", event => {
+            const hiddenButtons = event.target.children[2]
+            hiddenButtons.style.visibility = "visible" })
+        characterElement.addEventListener("mouseleave", event => {
+            const hiddenButtons = event.target.children[2]
+            hiddenButtons.style.visibility = "hidden" })
+    }
+
+
+    // ################# //
+    // Add modal methods //
+    // ################# //
 
     /**
      * Shows the add modal and activates the event listeners
      */
     showAddModal() {
         document.body.appendChild(this.cloneTemplate("add_modal_template"))
-        const overlay = document.querySelector("div#overlay")
         const addModal = document.querySelector("div#add_modal")
         this.handleOverlayClick = () => this.closeModal("add_modal")
 
-        overlay.classList.add("show")
+        this.overlay.classList.add("show")
         setTimeout(() => addModal.classList.add("show"), 0)
 
-        overlay.addEventListener("click", this.handleOverlayClick)
+        this.overlay.addEventListener("click", this.handleOverlayClick)
 
-        document.querySelector("#add_modal #close_button")
+        document.querySelector("#close_button")
                 .addEventListener("click", () => this.closeModal("add_modal"))
 
-        document.querySelector("#add_modal #submit_button")
+        document.querySelector("#submit_button")
                 .addEventListener("click", () => this.submitAddModal())
 
-        document.querySelectorAll("#add_modal input[type='text'], textarea")
+        document.querySelectorAll("input[type='text']")
                 .forEach(textInput => textInput.addEventListener("keyup", (event) => {
-                    if (event.key == "Enter") this.submitAddModal() }))
+                    if (event.key == "Enter") this.submitAddModal()
+                }))
+
+        document.querySelector("input[type='radio']#man")
+                .addEventListener("click", () => {
+                    document.querySelector("label[for='actor']").innerHTML = "Acteur :"
+                    document.querySelector("label[for='voice_actor']").innerHTML = "Doubleur :"
+                })
+        
+        document.querySelector("input[type='radio']#woman")
+                .addEventListener("click", () => {
+                    document.querySelector("label[for='actor']").innerHTML = "Actrice :"
+                    document.querySelector("label[for='voice_actor']").innerHTML = "Doubleuse :"
+                })
     }
 
     /**
-     * Submits the form of the add modal, then close the modal
+     * Submits the form of the add modal, then closes the modal
      */
     submitAddModal() {
         this.addCharacter()
         this.closeModal("add_modal")
     }
-
-    /**
-     * Resets the fields of a modal form
-     * @param {string} modalId
-     */
-    resetFields(modalId) {
-        document.querySelectorAll(`#${modalId} input[type='text'], #${modalId} textarea`)
-                .forEach(textInput => textInput.value = "")
-        document.querySelector(`#${modalId} input[name='gender']`).checked = true
-        document.querySelector(`#${modalId} input[name='appreciation']`).checked = true
-    }
-
-    /**
-     * Closes a modal according to its id
-     * @param {string} modalId
-     */
-    closeModal(modalId) {
-        const modal = document.getElementById(modalId)
-        const overlay = document.getElementById("overlay")
-
-        modal.classList.remove("show")
-        overlay.classList.remove("show")
-        overlay.removeEventListener("click", this.handleOverlayClick)
-        setTimeout(() => document.getElementById(modalId).remove(), 400)
-    }
-
-    // ############## //
-    // Action methods //
-    // ############## //
 
     /**
      * Creates a character from the fields and adds it to the database
@@ -189,10 +202,99 @@ class HomeController {
         const properties = []
         const formInputs = document.querySelectorAll("input[type='text'], input[type='radio']:checked, textarea")
         formInputs.forEach(input => properties.push(input.value))
-
         const character = new Character(properties)
         await new CharacterService().addCharacter(character)
     }
+
+
+    // ################## //
+    // Edit modal methods //
+    // ################## //
+
+    /**
+     * Shows the edit modal and activates the event listeners
+     * @param {number} characterId
+     */
+    showEditModal(characterId) {
+        document.body.appendChild(this.cloneTemplate("edit_modal_template"))
+        const editModal = document.querySelector("div#edit_modal")
+        this.handleOverlayClick = () => this.closeModal("edit_modal")
+
+        this.fillEditModal(characterId)
+        this.overlay.classList.add("show")
+        setTimeout(() => editModal.classList.add("show"), 0)
+
+        this.overlay.addEventListener("click", this.handleOverlayClick)
+
+        document.querySelector("#close_button")
+                .addEventListener("click", () => this.closeModal("edit_modal"))
+
+        document.querySelector("#submit_button")
+                .addEventListener("click", () => this.submitEditModal(characterId))
+
+        document.querySelectorAll("input[type='text']")
+                .forEach(textInput => textInput.addEventListener("keyup", (event) => {
+                    if (event.key == "Enter") this.submitEditModal(characterId)
+                }))
+
+        document.querySelector("input[type='radio']#man")
+                .addEventListener("click", () => {
+                    document.querySelector("label[for='actor']").innerHTML = "Acteur :"
+                    document.querySelector("label[for='voice_actor']").innerHTML = "Doubleur :"
+                })
+        
+        document.querySelector("input[type='radio']#woman")
+                .addEventListener("click", () => {
+                    document.querySelector("label[for='actor']").innerHTML = "Actrice :"
+                    document.querySelector("label[for='voice_actor']").innerHTML = "Doubleuse :"
+                })
+    }
+
+    /**
+     * Fills the edit modal from a character id
+     * @param {number} characterId
+     */
+    async fillEditModal(characterId) {
+        const editModal = document.querySelector("div#edit_modal")
+        const character = await new CharacterService().getCharacter(characterId)
+
+        if (character.first_name) editModal.querySelector("input#first_name").value = character.first_name
+        if (character.last_name) editModal.querySelector("input#last_name").value = character.last_name
+        if (character.gender == "F") editModal.querySelector("input[type='radio']#woman").checked = true
+        if (character.work) editModal.querySelector("input#work").value = character.work
+        if (character.actor) editModal.querySelector("input#actor").value = character.actor
+        if (character.voice_actor) editModal.querySelector("input#voice_actor").value = character.voice_actor
+        if (character.profile) editModal.querySelector("input#profile").value = character.profile
+        if (character.comment) editModal.querySelector("textarea#comment").value = character.comment
+        editModal.querySelectorAll("input[name='appreciation']").item(character.appreciation - 1).checked = true
+
+        if (character.gender == "F") {
+            editModal.querySelector("label[for='actor']").innerHTML = "Actrice :"
+            editModal.querySelector("label[for='voice_actor']").innerHTML = "Doubleuse :"
+        }
+    }
+
+    /**
+     * Submits the form of the edit modal, then closes the modal
+     * @param {number} characterId
+     */
+    submitEditModal(characterId) {
+        this.editCharacter(characterId)
+        this.closeModal("edit_modal")
+    }
+
+    /**
+     * Updates a character from the fields in the database
+     * @param {number} characterId
+     */
+    async editCharacter(characterId) {
+        const properties = []
+        const formInputs = document.querySelectorAll("input[type='text'], input[type='radio']:checked, textarea")
+        formInputs.forEach(input => properties.push(input.value))
+        const character = new Character(properties)
+        await new CharacterService().editCharacter(characterId, character)
+    }
+
 
     // ############ //
     // Tool methods //
@@ -208,16 +310,24 @@ class HomeController {
     }
 
     /**
-     * Activates the hidden buttons display for a character
-     * @param {Element} character
+     * Resets the fields of a modal form
      */
-    activateCharacterHover(character) {
-        character.addEventListener("mouseenter", event => {
-            const hiddenButtons = event.target.children[2]
-            hiddenButtons.style.visibility = "visible" })
-        character.addEventListener("mouseleave", event => {
-            const hiddenButtons = event.target.children[2]
-            hiddenButtons.style.visibility = "hidden" })
+    resetFields() {
+        document.querySelectorAll(`input[type='text'], textarea`)
+                .forEach(textInput => textInput.removeAttribute("value"))
+        document.querySelector(`input[name='gender']`).checked = true
+        document.querySelector(`input[name='appreciation']`).checked = true
+    }
+
+    /**
+     * Closes a modal according to its id
+     * @param {string} modalId
+     */
+    closeModal(modalId) {
+        document.getElementById(modalId).classList.remove("show")
+        this.overlay.classList.remove("show")
+        setTimeout(() => document.getElementById(modalId).remove(), 400)
+        this.overlay.removeEventListener("click", this.handleOverlayClick)
     }
 
 }
