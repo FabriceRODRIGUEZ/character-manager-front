@@ -31,7 +31,7 @@ nav button {
 nav button.active:hover {
 	cursor: pointer;
 	background-color: #F4D4AA;
-	/* ... */
+	/* AntiqueWhite - 10% */
 }
 
 nav button > div.filter {
@@ -76,19 +76,19 @@ div#sort_section > select {
 
 div#sort_section > select.inactive {
 	background-color: #7D756B;
-	/* ... */
+	/* Antiquewhite + Black (50%) */
 }
 
 div#sort_section > select:hover {
 	cursor: pointer;
 	background-color: #F4D4AA;
-	/* ... */
+	/* AntiqueWhite - 10% */
 }
 
 div#sort_section > select.inactive:hover {
 	cursor: default;
 	background-color: #7D756B;
-	/* ... */
+	/* Antiquewhite + Black (50%) */
 }
 
 /* - - - */

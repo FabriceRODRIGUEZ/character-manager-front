@@ -21,6 +21,7 @@ class HomeController {
 
     /**
      * Displays the right version of the page
+     * @returns {Promise<void>}
      */
     async start() {
         const authentication = await new AuthService().authenticate()
@@ -37,6 +38,7 @@ class HomeController {
 
     /**
      * Displays the version for an unauthentified user
+     * @returns {void}
      */
     displayUnauthentifiedVersion() {
         const addButton = document.querySelector("button#add_button")
@@ -66,6 +68,7 @@ class HomeController {
 
     /**
      * Displays the version for an authentified user
+     * @returns {void}
      */
     displayAuthentifiedVersion() {
         const addButton = document.querySelector("button#add_button")
@@ -88,6 +91,7 @@ class HomeController {
 
     /**
      * Displays the list of characters
+     * @returns {Promise<void>}
      */
     async displayCharactersList() {
         const list = document.querySelector("div#characters_list")
@@ -104,9 +108,21 @@ class HomeController {
     }
 
     /**
+     * Reloads the list of characters
+     * @returns {void}
+     */
+    reloadCharactersList() {
+        const list = document.querySelector("div#characters_list")
+        const characterElements = document.querySelectorAll("div.character")
+        characterElements.forEach(characterElement => list.removeChild(characterElement))
+        this.displayCharactersList()
+    }
+
+    /**
      * Fills a character element with the properties of a character
      * @param {Element} characterElement
      * @param {Object} character
+     * @returns {void}
      */
     fillCharacterElement(characterElement, character) {
         if (character.gender == "F") {
@@ -129,12 +145,16 @@ class HomeController {
         }
 
         characterElement.querySelector("button.edit_button")
-               .addEventListener("click", () => this.showEditModal(character.id))
+                        .addEventListener("click", () => this.showEditModal(character.id))
+
+        characterElement.querySelector("button.delete_button")
+                        .addEventListener("click", () => this.showDeleteModal(character.id))
     }
 
     /**
      * Activates the hidden buttons display for a character
      * @param {Element} characterElement
+     * @returns {void}
      */
     activateCharacterHover(characterElement) {
         characterElement.addEventListener("mouseenter", event => {
@@ -152,6 +172,7 @@ class HomeController {
 
     /**
      * Shows the add modal and activates the event listeners
+     * @returns {void}
      */
     showAddModal() {
         document.body.appendChild(this.cloneTemplate("add_modal_template"))
@@ -188,22 +209,26 @@ class HomeController {
     }
 
     /**
-     * Submits the form of the add modal, then closes the modal
+     * Submits the form of the add modal,
+     * then closes the modal and reloads the list
+     * @returns {void}
      */
     submitAddModal() {
         this.addCharacter()
         this.closeModal("add_modal")
+        this.reloadCharactersList()
     }
 
     /**
      * Creates a character from the fields and adds it to the database
+     * @returns {Promise<void>}
      */
     async addCharacter() {
         const properties = []
         const formInputs = document.querySelectorAll("input[type='text'], input[type='radio']:checked, textarea")
         formInputs.forEach(input => properties.push(input.value))
         const character = new Character(properties)
-        await new CharacterService().addCharacter(character)
+        await this.service.addCharacter(character)
     }
 
 
@@ -214,6 +239,7 @@ class HomeController {
     /**
      * Shows the edit modal and activates the event listeners
      * @param {number} characterId
+     * @returns {void}
      */
     showEditModal(characterId) {
         document.body.appendChild(this.cloneTemplate("edit_modal_template"))
@@ -253,6 +279,7 @@ class HomeController {
     /**
      * Fills the edit modal from a character id
      * @param {number} characterId
+     * @returns {Promise<void>}
      */
     async fillEditModal(characterId) {
         const editModal = document.querySelector("div#edit_modal")
@@ -275,24 +302,101 @@ class HomeController {
     }
 
     /**
-     * Submits the form of the edit modal, then closes the modal
+     * Submits the form of the edit modal,
+     * then closes the modal and reloads the list
      * @param {number} characterId
+     * @returns {void}
      */
     submitEditModal(characterId) {
         this.editCharacter(characterId)
         this.closeModal("edit_modal")
+        this.reloadCharactersList()
     }
 
     /**
      * Updates a character from the fields in the database
      * @param {number} characterId
+     * @returns {Promise<void>}
      */
     async editCharacter(characterId) {
         const properties = []
         const formInputs = document.querySelectorAll("input[type='text'], input[type='radio']:checked, textarea")
         formInputs.forEach(input => properties.push(input.value))
         const character = new Character(properties)
-        await new CharacterService().editCharacter(characterId, character)
+        await this.service.editCharacter(characterId, character)
+    }
+
+
+    // #################### //
+    // Delete modal methods //
+    // #################### //
+
+    /**
+     * Shows the delete modal and activates the event listeners
+     * @param {number} characterId
+     * @returns {void}
+     */
+    showDeleteModal(characterId) {
+        document.body.appendChild(this.cloneTemplate("delete_modal_template"))
+        const deleteModal = document.querySelector("div#delete_modal")
+        this.handleOverlayClick = () => this.closeModal("delete_modal")
+
+        this.overlay.classList.add("show")
+        setTimeout(() => deleteModal.classList.add("show"), 0)
+
+        this.overlay.addEventListener("click", this.handleOverlayClick)
+
+        document.querySelector("#close_button")
+                .addEventListener("click", () => this.closeModal("delete_modal"))
+
+        document.querySelector("#submit_button")
+                .addEventListener("click", () => this.submitDeleteModal(characterId))
+    }
+
+    /**
+     * Deletes the character,
+     * then closes the modal and reloads the list
+     * @param {number} characterId
+     * @returns {void}
+     */
+    submitDeleteModal(characterId) {
+        new CharacterService().deleteCharacter(characterId)
+        this.closeModal("delete_modal")
+        this.reloadCharactersList()
+    }
+
+
+    // #################### //
+    // Filter modal methods //
+    // #################### //
+
+    /**
+     * Shows the filter modal and activates the event listeners
+     * @returns {void}
+     */
+    showFilterModal() {
+        document.body.appendChild(this.cloneTemplate("filter_modal_template"))
+        const filterModal = document.querySelector("div#filter_modal")
+        this.handleOverlayClick = () => this.closeModal("filter_modal")
+
+        this.overlay.classList.add("show")
+        setTimeout(() => filterModal.classList.add("show"), 0)
+        // this.fillFilterModal()
+
+        this.overlay.addEventListener("click", this.handleOverlayClick)
+
+        document.querySelector("#close_button")
+                .addEventListener("click", () => this.closeModal("filter_modal"))
+
+        // a#reset_link
+
+        // document.querySelector("#submit_button")
+        //         .addEventListener("click", () => this.submitFilterModal())
+
+        // document.querySelectorAll("input[type='text']")
+        //         .forEach(textInput => textInput.addEventListener("keyup", (event) => {
+        //             if (event.key == "Enter") this.submitFilterModal()
+        //         }))
     }
 
 
@@ -311,6 +415,7 @@ class HomeController {
 
     /**
      * Resets the fields of a modal form
+     * @returns {void}
      */
     resetFields() {
         document.querySelectorAll(`input[type='text'], textarea`)
@@ -322,6 +427,7 @@ class HomeController {
     /**
      * Closes a modal according to its id
      * @param {string} modalId
+     * @returns {void}
      */
     closeModal(modalId) {
         document.getElementById(modalId).classList.remove("show")

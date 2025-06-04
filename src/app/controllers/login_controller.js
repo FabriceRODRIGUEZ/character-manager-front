@@ -10,13 +10,16 @@ class LoginController {
      * Activates the event listeners of the page
      */
     start() {
+        const inputs = document.querySelectorAll("input")
         const submitButton = document.querySelector("button#submit_button")
         const newUserButton = document.querySelector("button#new_user")
 
-        submitButton.addEventListener("click", (event) => this.login())
+        submitButton.addEventListener("click", () => this.login())
+        newUserButton.addEventListener("click", () => location.href = "signup.html")
 
-        newUserButton.addEventListener("click", (event) =>
-            window.location.href = "signup.html")
+        inputs.forEach(input => input.addEventListener("keyup", (event) => {
+            if (event.key == "Enter") this.login()
+        }))
     }
 
     /**
@@ -33,7 +36,7 @@ class LoginController {
 
         // Erreur
 
-        window.location.replace("home.html")
+        location.replace("home.html")
     }
 
 }

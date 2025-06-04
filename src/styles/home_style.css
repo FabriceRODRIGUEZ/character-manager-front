@@ -94,6 +94,7 @@ div.hidden_buttons > button {
 
 div.hidden_buttons > button:hover {
 	background-color: rgba(222, 184, 135, 0.8);
+	/* Burlywood (80%) */
 }
 
 div.hidden_buttons img {

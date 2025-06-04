@@ -17,13 +17,26 @@ export default class UserService extends ApiService {
     }
 
     /**
+     * Returns a user according to its username
+     * @param {string} username
+     * @returns {Promise<Object>}
+     */
+    async getUser(username) {
+        const response = await fetch(`${this.apiUrl}/users/${username}`, {
+            method: "GET",
+            headers: this.headers
+        })
+        return response.json()
+    }
+
+    /**
      * Updates the username of a user
      * @param {string} username
      * @param {string} newUsername
      * @returns {Promise<Response>}
      */
     async updateUsername(username, newUsername) {
-        return await fetch(`${this.apiUrl}/users/${username}`, {
+        return await fetch(`${this.apiUrl}/users`, {
             method: "PATCH",
             headers: this.headers,
             body: JSON.stringify({ "username": newUsername })
@@ -37,7 +50,7 @@ export default class UserService extends ApiService {
      * @returns {Promise<Response>}
      */
     async updateEmail(username, newEmail) {
-        return await fetch(`${this.apiUrl}/users/${username}`, {
+        return await fetch(`${this.apiUrl}/users`, {
             method: "PATCH",
             headers: this.headers,
             body: JSON.stringify({ "email": newEmail })
@@ -51,7 +64,7 @@ export default class UserService extends ApiService {
      * @returns {Promise<Response>}
      */
     async updatePassword(username, newPassword) {
-        return await fetch(`${this.apiUrl}/users/${username}`, {
+        return await fetch(`${this.apiUrl}/users`, {
             method: "PATCH",
             headers: this.headers,
             body: JSON.stringify({ "password": newPassword })
@@ -65,7 +78,7 @@ export default class UserService extends ApiService {
      * @returns {Promise<Response>}
      */
     async updateVisibility(username, newVisibility) {
-        return await fetch(`${this.apiUrl}/users/${username}`, {
+        return await fetch(`${this.apiUrl}/users`, {
             method: "PATCH",
             headers: this.headers,
             body: JSON.stringify({ "visibility": newVisibility })
@@ -73,12 +86,11 @@ export default class UserService extends ApiService {
     }
 
     /**
-     * Deletes a user and its characters in the database
-     * @param {string} username
+     * Deletes the user and its characters in the database
      * @returns {Promise<Response>}
      */
-    async deleteAccount(username) {
-        return await fetch(`${this.apiUrl}/users/${username}`, {
+    async deleteAccount() {
+        return await fetch(`${this.apiUrl}/users`, {
             method: "DELETE",
             headers: this.headers
         })

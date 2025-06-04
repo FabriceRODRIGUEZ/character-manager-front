@@ -17,69 +17,102 @@ class AccountController {
     }
 
     /**
-     * Activates the event listeners of the page
+     * Fills the page and activates the event listeners
      */
     async start() {
-
         const authentication = await new AuthService().authenticate()
         this.username = await authentication.text()
+        this.fillAccountWindow()
 
-        const usernameInput = document.querySelector("input#username")
         const updateUsernameButton = document.querySelector("input#username + button.update_button")
-
-        const emailInput = document.querySelector("input#email")
         const updateEmailButton = document.querySelector("input#email + button.update_button")
-
-        const passwordInput = document.querySelector("input#password")
         const updatePasswordButton = document.querySelector("input#password + button.update_button")
-
-        const visibilityPrivateInput = document.querySelector("input#private")
-        const visibilityPublicInput = document.querySelector("input#public")
-
+        const visibilityPrivateInput = document.querySelector("input[type='radio']#private")
+        const visibilityPublicInput = document.querySelector("input[type='radio']#public")
         const logoutButton = document.querySelector("button#logout_button")
         const deleteAccountButton = document.querySelector("button#delete_account_button")
 
-
-        updateUsernameButton.addEventListener("click", async (event) => {
-            const response = await this.service.updateUsername(this.username, usernameInput.value)
-            const newUser = await response.json()
-            this.username = newUser.username
-            sessionStorage.setItem("token", newUser.token)
-            usernameInput.value = ""
-        })
-
-        updateEmailButton.addEventListener("click", (event) => {
-            this.service.updateEmail(username, emailInput.value)
-            emailInput.value = ""
-        })
-
-        updatePasswordButton.addEventListener("click", (event) => {
-            this.service.updatePassword(username, passwordInput.value)
-            passwordInput.value = ""
-        })
-
-        visibilityPrivateInput.addEventListener("click", (event) =>
-            this.service.updateVisibility(username, "private"))
-
-        visibilityPublicInput.addEventListener("click", (event) =>
-            this.service.updateVisibility(username, "public"))
-
-        logoutButton.addEventListener("click", (event) =>
-            this.logout())
-
-        deleteAccountButton.addEventListener("click", (event) => {
-            this.service.deleteAccount(username)
-            this.logout()
-        })
-
+        updateUsernameButton.addEventListener("click", async () => this.updateUsername())
+        updateEmailButton.addEventListener("click", () => this.updateEmail())
+        updatePasswordButton.addEventListener("click", () => this.updatePassword())
+        visibilityPrivateInput.addEventListener("click", () => this.updateVisibility("private"))
+        visibilityPublicInput.addEventListener("click", () => this.updateVisibility("public"))
+        logoutButton.addEventListener("click", () => this.logout())
+        deleteAccountButton.addEventListener("click", () => this.deleteAccount())
     }
 
     /**
-     * Logs out a user
+     * Fills the account windows with the user's information
+     */
+    async fillAccountWindow() {
+        const user = await this.service.getUser(this.username)
+        const usernameInput = document.querySelector("input#username")
+        const emailInput = document.querySelector("input#email")
+        const passwordInput = document.querySelector("input#password")
+        const visibilityPrivateInput = document.querySelector("input[type='radio']#private")
+
+        usernameInput.placeholder = user.username
+        emailInput.placeholder = user.email
+        passwordInput.placeholder = "••••••••"
+        if (user.visibility == "public") {
+            visibilityPrivateInput.checked = true
+        }
+    }
+
+    /**
+     * Fills the account windows with the user's information
+     */
+    async updateUsername() {
+        const usernameInput = document.querySelector("input#username")
+        const response = await this.service.updateUsername(this.username, usernameInput.value)
+        const newUser = await response.json()
+        this.username = newUser.username
+        sessionStorage.setItem("token", newUser.token)
+        usernameInput.placeholder = usernameInput.value
+        usernameInput.removeAttribute("value")
+    }
+
+    /**
+     * Updates the email adress of the user
+     */
+    async updateEmail() {
+        const emailInput = document.querySelector("input#email")
+        await this.service.updateEmail(this.username, emailInput.value)
+        emailInput.placeholder = emailInput.value
+        emailInput.removeAttribute("value")
+    }
+
+    /**
+     * Updates the password of the user
+     */
+    async updatePassword() {
+        const passwordInput = document.querySelector("input#password")
+        await this.service.updatePassword(this.username, passwordInput.value)
+        passwordInput.removeAttribute("value")
+    }
+    
+    /**
+     * Updates the visibility of the user
+     * @param {string} newVisibility
+     */
+    async updateVisibility(newVisibility) {
+        await this.service.updateVisibility(this.username, newVisibility)
+    }
+
+    /**
+     * Logs out a user, then redirects to the home page
      */
     logout() {
         sessionStorage.removeItem("token")
-        window.location.replace("home.html")
+        location.replace("home.html")
+    }
+
+    /**
+     * Deletes the user account and logs out
+     */
+    async deleteAccount() {
+        await this.service.deleteAccount()
+        this.logout()
     }
 
 }

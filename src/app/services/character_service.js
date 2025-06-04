@@ -67,4 +67,16 @@ export default class CharacterService extends ApiService {
         })
     }
 
+    /**
+     * Deletes a character in the database
+     * @param {number} characterId
+     * @returns {Promise<Response>}
+     */
+    async deleteCharacter(characterId) {
+        return await fetch(`${this.apiUrl}/characters/${characterId}`, {
+            method: "DELETE",
+            headers: this.headers
+        })
+    }
+
 }

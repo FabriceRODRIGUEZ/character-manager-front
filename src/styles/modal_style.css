@@ -64,6 +64,7 @@ button#close_button {
 button#close_button:hover {
 	cursor: pointer;
 	background-color: rgba(222, 184, 135, 0.8);
+	/* Burlywood (80%) */
 }
 
 button#close_button > img {
@@ -179,7 +180,7 @@ button#submit_button {
 button#submit_button:hover {
 	cursor: pointer;
 	background-color: #D3A05F;
-	/* ... */
+	/* Burlywood - 10% */
 }
 
 /* - - - */

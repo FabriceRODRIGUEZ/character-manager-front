@@ -95,7 +95,7 @@ button#submit_button {
 button#submit_button:hover {
 	cursor: pointer;
 	background-color: #D3A05F;
-	/* ... */
+	/* Burlywood - 10% */
 }
 
 button#new_user {
@@ -109,13 +109,13 @@ button#new_user {
 	border: 2px solid black;
 	border-radius: 5px;
 	background-color: #F6E9D6;
-	/* ... */
+	/* Floralwhite + Burlywood (25%) */
 }
 
 button#new_user:hover {
 	cursor: pointer;
 	background-color: #EDD3AC;
-	/* ... */
+	/* Floralwhite + Burlywood (25%) - 10% */
 }
 
 /* - - - */

@@ -11,8 +11,14 @@ class SignupController {
      * Activates the event listeners of the page
      */
     start() {
+        const textInputs = document.querySelectorAll("input[type='text'], input[type='password']")
         const submitButton = document.querySelector("button#submit_button")
-        submitButton.addEventListener("click", (event) => this.signup())
+
+        submitButton.addEventListener("click", () => this.signup())
+
+        textInputs.forEach(textInput => textInput.addEventListener("keyup", (event) => {
+            if (event.key == "Enter") this.signup()
+        }))
     }
 
     /**
@@ -33,7 +39,7 @@ class SignupController {
 
         // Confirmation
 
-        window.location.replace("login.html")
+        location.replace("login.html")
     }
 
 }

@@ -93,13 +93,13 @@ button.update_button {
 	border: 2px solid black;
 	border-radius: 5px;
 	background-color: #F6E9D6;
-	/* ... */
+	/* Floralwhite + Burlywood (25%) */
 }
 
 button.update_button:hover {
 	cursor: pointer;
 	background-color: #EDD3AC;
-	/* ... */
+	/* Floralwhite + Burlywood (25%) - 10% */
 }
 
 /* Bottom : */
@@ -126,19 +126,19 @@ button#delete_account_button {
 
 button#delete_account_button {
 	background-color: #F6E9D6;
-	/* ... */
+	/* Floralwhite + Burlywood (25%) */
 }
 
 button#logout_button:hover {
 	cursor: pointer;
 	background-color: #D3A05F;
-	/* ... */
+	/* Burlywood - 10% */
 }
 
 button#delete_account_button:hover {
 	cursor: pointer;
 	background-color: #EDD3AC;
-	/* ... */
+	/* Floralwhite + Burlywood (25%) - 10% */
 }
 
 /* - - - */
