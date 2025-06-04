@@ -14,6 +14,30 @@ div#overlay.show {
 	transition: opacity 0.4s;
 }
 
+div#toast {
+	visibility: hidden;
+	opacity: 0;
+    position: fixed;
+    top: 20px;
+    left: 50vw;
+    translate: -50%;
+    padding: 10px 20px;
+    width: max-content;
+    font-size: large;
+    color: crimson;
+    border-radius: 5px;
+    box-shadow: 0 0 5px black;
+    background-color: floralwhite;
+	transition: visibility 0.4s,
+				opacity 0.4s;
+}
+
+div#toast.show {
+	visibility: visible;
+	opacity: 1;
+	transition: opacity 0.4s;
+}
+
 div.modal {
 	visibility: hidden;
 	opacity: 0;

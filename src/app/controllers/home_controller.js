@@ -72,13 +72,15 @@ class HomeController {
      */
     displayAuthentifiedVersion() {
         const addButton = document.querySelector("button#add_button")
-        const loginButton = document.querySelector("button#login_button")
+        const filterButton = document.querySelector("button#filter_button")
         const accountButton = document.querySelector("button#account_button")
+        const loginButton = document.querySelector("button#login_button")
         const list = document.querySelector("div#characters_list")
 
         addButton.addEventListener("click", () => this.showAddModal())
-        loginButton.style.display = "none"
+        filterButton.addEventListener("click", () => this.showFilterModal())
         accountButton.addEventListener("click", () => location.href = "account.html")
+        loginButton.style.display = "none"
 
         list.style.visibility = "visible"
         this.displayCharactersList()
