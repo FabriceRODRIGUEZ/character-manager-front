@@ -10,7 +10,7 @@ export default class ApiService {
      * Constructor of the API service
      */
     constructor() {
-        this.apiUrl = "http://localhost:8080"
+        this.apiUrl = "https://www.main-bvxea6i-f243wjcs3wrdu.fr-4.platformsh.site"
         this.token = sessionStorage.getItem("token")
         this.headers = new Headers()
 
