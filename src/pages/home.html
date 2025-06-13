@@ -50,52 +50,54 @@
 			</div>
 		</nav>
 
-		<div id="characters_list">
-			<template id="character_template">
-				<div class="character">
-					<div class="profile">
-						<img src="../../res/images/profile.png" alt="Image de profil">
-					</div>
+		<section>
+			<div id="characters_list">
+				<template id="character_template">
+					<div class="character">
+						<div class="profile">
+							<img src="../../res/images/profile.png" alt="Image de profil">
+						</div>
 
-					<div class="description">
-						<div class="property">
-							<span class="property_name">Nom :</span>
-							<span class="first_name"></span>
-							<span class="last_name"></span>
+						<div class="description">
+							<div class="property">
+								<span class="property_name">Nom :</span>
+								<span class="first_name"></span>
+								<span class="last_name"></span>
+							</div>
+							<div class="property">
+								<span class="property_name">Œuvre :</span>
+								<span class="work"></span>
+							</div>
+							<div class="property">
+								<span class="property_name">Acteur :</span>
+								<span class="actor"></span>
+							</div>
+							<div class="property">
+								<span class="property_name">Doubleur :</span>
+								<span class="voice_actor"></span>
+							</div>
+							<div class="property">
+								<span class="property_name">Appréciation :</span>
+								<div class="appreciation"></div>
+							</div>
 						</div>
-						<div class="property">
-							<span class="property_name">Œuvre :</span>
-							<span class="work"></span>
-						</div>
-						<div class="property">
-							<span class="property_name">Acteur :</span>
-							<span class="actor"></span>
-						</div>
-						<div class="property">
-							<span class="property_name">Doubleur :</span>
-							<span class="voice_actor"></span>
-						</div>
-						<div class="property">
-							<span class="property_name">Appréciation :</span>
-							<div class="appreciation"></div>
+
+						<div class="hidden_buttons">
+							<button class="edit_button">
+								<img src="../../res/icons/edition.ico" alt="Édition">
+							</button>
+							<button class="delete_button">
+								<img src="../../res/icons/cross.ico" alt="Croix">
+							</button>
 						</div>
 					</div>
+				</template>
+			</div>
 
-					<div class="hidden_buttons">
-						<button class="edit_button">
-							<img src="../../res/icons/edition.ico" alt="Édition">
-						</button>
-						<button class="delete_button">
-							<img src="../../res/icons/cross.ico" alt="Croix">
-						</button>
-					</div>
-				</div>
-			</template>
-		</div>
-
-		<div id="message">
-			Veuillez vous connecter pour afficher une liste
-		</div>
+			<div id="message">
+				Veuillez vous connecter pour afficher une liste
+			</div>
+		</section>
 
 		<footer>
 			<p id="copyright">
@@ -309,7 +311,7 @@
 						<span>Sexe :</span>
 						<div>
 							<div class="choice">
-								<input type="radio" name="gender" value="M" id="man" checked>
+								<input type="radio" name="gender" value="M" id="man">
 								<label for="man">Homme</label>
 							</div>
 							<div class="choice">
@@ -342,7 +344,7 @@
 						<span>Appréciation :</span>
 						<div>
 							<div class="choice">
-								<input type="radio" name="appreciation" value="1" id="1_star" checked>
+								<input type="radio" name="appreciation" value="1" id="1_star">
 								<label for="1_star">
 									<img src="../../res/icons/star.ico" alt="Étoile">
 								</label>

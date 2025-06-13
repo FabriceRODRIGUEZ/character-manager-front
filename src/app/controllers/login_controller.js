@@ -6,6 +6,10 @@ import AuthService from "../services/auth_service.js"
  */
 class LoginController {
 
+    constructor() {
+        this.toastTimeout = null
+    }
+    
     /**
      * Activates the event listeners of the page
      */
@@ -28,15 +32,28 @@ class LoginController {
     async login() {
         const user_id = document.querySelector("input#user_id").value
         const password = document.querySelector("input#password").value
-
-        // Vérifications
+        const toast = document.querySelector("div#toast")
+        clearTimeout(this.toastTimeout)
 
         const data = { "user_id": user_id, "password": password }
-        await new AuthService().login(data)
+        const response = await new AuthService().login(data)
+        const message = (response.status != 200) ? await response.text() : null
 
-        // Erreur
+        if (response.status == 200) {
+            location.replace("home.html")
+        }
 
-        location.replace("home.html")
+        else if (message == "Missing field(s)") {
+            toast.innerText = "Champ(s) manquant(s)"
+            toast.classList.add("show")
+            this.toastTimeout = setTimeout(() => toast.classList.remove("show"), 3000)
+        }
+
+        else if (message == "Incorrect password") {
+            toast.innerText = "Mot de passe incorrect"
+            toast.classList.add("show")
+            this.toastTimeout = setTimeout(() => toast.classList.remove("show"), 3000)
+        }
     }
 
 }

@@ -16,12 +16,9 @@ export default class CharacterService extends ApiService {
         super()
     }
 
-    /**
-     * Returns the characters of a user
-     * @returns {Promise<Array>}
-     */
-    async getCharacters() {
-        const response = await fetch(`${this.apiUrl}/characters`, {
+    async getCharacters(sortProperty, sortOrder, filters) {
+        const url = `${this.apiUrl}/characters?first_name=${(filters.first_name) ? filters.first_name : ""}&last_name=${(filters.last_name) ? filters.last_name : ""}&gender=${(filters.gender) ? filters.gender : ""}&work=${(filters.work) ? filters.work : ""}&actor=${(filters.actor) ? filters.actor : ""}&voice_actor=${(filters.voice_actor) ? filters.voice_actor : ""}&comment=${(filters.comment) ? filters.comment : ""}&appreciation=${(filters.appreciation) ? filters.appreciation : ""}&sort_property=${sortProperty}&sort_order=${sortOrder}`
+        const response = await fetch(url, {
             method: "GET",
             headers: this.headers
         })

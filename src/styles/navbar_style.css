@@ -1,8 +1,7 @@
 nav {
 	display: flex;
 	position: fixed;
-	top: 0px;
-	width: 100vw;
+	inset: 0 0 auto 0;
 	padding: 5px 10px;
 	justify-content: space-between;
 	align-items: center;

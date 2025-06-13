@@ -49,13 +49,13 @@ class AccountController {
         const usernameInput = document.querySelector("input#username")
         const emailInput = document.querySelector("input#email")
         const passwordInput = document.querySelector("input#password")
-        const visibilityPrivateInput = document.querySelector("input[type='radio']#private")
+        const visibilityPublicInput = document.querySelector("input[type='radio']#public")
 
         usernameInput.placeholder = user.username
         emailInput.placeholder = user.email
         passwordInput.placeholder = "••••••••"
         if (user.visibility == "public") {
-            visibilityPrivateInput.checked = true
+            visibilityPublicInput.checked = true
         }
     }
 
@@ -69,7 +69,7 @@ class AccountController {
         this.username = newUser.username
         sessionStorage.setItem("token", newUser.token)
         usernameInput.placeholder = usernameInput.value
-        usernameInput.removeAttribute("value")
+        usernameInput.value = ""
     }
 
     /**
@@ -79,7 +79,7 @@ class AccountController {
         const emailInput = document.querySelector("input#email")
         await this.service.updateEmail(this.username, emailInput.value)
         emailInput.placeholder = emailInput.value
-        emailInput.removeAttribute("value")
+        emailInput.value = ""
     }
 
     /**
@@ -88,7 +88,7 @@ class AccountController {
     async updatePassword() {
         const passwordInput = document.querySelector("input#password")
         await this.service.updatePassword(this.username, passwordInput.value)
-        passwordInput.removeAttribute("value")
+        passwordInput.value = ""
     }
     
     /**

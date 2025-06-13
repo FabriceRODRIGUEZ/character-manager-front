@@ -38,8 +38,11 @@ export default class AuthService extends ApiService {
             headers: this.headers,
             body: JSON.stringify(data)
         })
-        const token = await response.text()
-        sessionStorage.setItem("token", token)
+        if (response.status == 200) {
+            const token = await response.text()
+            sessionStorage.setItem("token", token)
+        }
+        return response
     }
 
     /**

@@ -6,6 +6,8 @@ import CharacterService from "../services/character_service.js"
 /**
  * A controller for the home page
  * @property {CharacterService} service
+ * @property {string} sortProperty
+ * @property {string} sortOrder
  * @property {Element} overlay
  * @property {() => void} handleOverlayClick
  */
@@ -16,7 +18,13 @@ class HomeController {
      */
     constructor() {
         this.service = new CharacterService()
+        this.sortProperty = "first_name"
+        this.sortOrder = "ascendant"
+        this.filters = {}
         this.overlay = document.querySelector("div#overlay")
+        this.handleOverlayClick = () => {}
+        this.toast = document.querySelector("div#toast")
+        this.toastTimeout = null
     }
 
     /**
@@ -43,10 +51,11 @@ class HomeController {
     displayUnauthentifiedVersion() {
         const addButton = document.querySelector("button#add_button")
         const filterButton = document.querySelector("button#filter_button")
-        const sortProperty = document.querySelector("select[name='sort_property']")
-        const sortOrder = document.querySelector("select[name='sort_order']")
-        const loginButton = document.querySelector("button#login_button")
+        const sortPropertySelect = document.querySelector("select[name='sort_property']")
+        const sortOrderSelect = document.querySelector("select[name='sort_order']")
         const accountButton = document.querySelector("button#account_button")
+        const loginButton = document.querySelector("button#login_button")
+        const mentionsLink = document.querySelector("a#mentions")
         const message = document.querySelector("div#message")
 
         addButton.classList.remove("active")
@@ -55,13 +64,15 @@ class HomeController {
         filterButton.classList.remove("active")
         filterButton.children[0].classList.add("show")
 
-        sortProperty.classList.add("inactive")
-        for (let option of sortProperty.children) { option.disabled = true }
-        sortOrder.classList.add("inactive")
-        for (let option of sortOrder.children) { option.disabled = true }
+        sortPropertySelect.classList.add("inactive")
+        for (let option of sortPropertySelect.children) { option.disabled = true }
+        sortOrderSelect.classList.add("inactive")
+        for (let option of sortOrderSelect.children) { option.disabled = true }
 
         accountButton.style.display = "none"
         loginButton.addEventListener("click", () => location.href = "login.html")
+
+        mentionsLink.addEventListener("click", () => location.href = "mentions.html")
 
         message.style.display = "block"
     }
@@ -73,15 +84,25 @@ class HomeController {
     displayAuthentifiedVersion() {
         const addButton = document.querySelector("button#add_button")
         const filterButton = document.querySelector("button#filter_button")
+        const sortPropertySelect = document.querySelector("select[name='sort_property']")
+        const sortOrderSelect = document.querySelector("select[name='sort_order']")
         const accountButton = document.querySelector("button#account_button")
         const loginButton = document.querySelector("button#login_button")
+        const mentionsLink = document.querySelector("a#mentions")
         const list = document.querySelector("div#characters_list")
 
         addButton.addEventListener("click", () => this.showAddModal())
         filterButton.addEventListener("click", () => this.showFilterModal())
+        sortPropertySelect.addEventListener("change", (event) => {
+            this.sortProperty = event.target.value
+            this.reloadCharactersList() })
+        sortOrderSelect.addEventListener("change", (event) => {
+            this.sortOrder = event.target.value
+            this.reloadCharactersList() })
         accountButton.addEventListener("click", () => location.href = "account.html")
-        loginButton.style.display = "none"
+        mentionsLink.addEventListener("click", () => location.href = "mentions.html")
 
+        loginButton.style.display = "none"
         list.style.visibility = "visible"
         this.displayCharactersList()
     }
@@ -97,7 +118,7 @@ class HomeController {
      */
     async displayCharactersList() {
         const list = document.querySelector("div#characters_list")
-        const characters = await this.service.getCharacters()
+        const characters = await this.service.getCharacters(this.sortProperty, this.sortOrder, this.filters)
 
         characters.forEach(character => {
             const characterElement = this.cloneTemplate("character_template")
@@ -215,10 +236,25 @@ class HomeController {
      * then closes the modal and reloads the list
      * @returns {void}
      */
-    submitAddModal() {
-        this.addCharacter()
-        this.closeModal("add_modal")
-        this.reloadCharactersList()
+    async submitAddModal() {
+        clearTimeout(this.toastTimeout)
+        const properties = []
+        const formInputs = document.querySelectorAll("input[type='text'], input[type='radio']:checked, textarea")
+        formInputs.forEach(input => properties.push(input.value))
+        const character = new Character(properties)
+        const response = await this.service.addCharacter(character)
+        const message = (response.status != 201) ? await response.text() : null
+
+        if (response.status == 201) {
+            this.closeModal("add_modal")
+            this.reloadCharactersList()
+        }
+        
+        else if (message == "Missing field(s)") {
+            toast.innerText = "Champ(s) manquant(s)"
+            toast.classList.add("show")
+            this.toastTimeout = setTimeout(() => toast.classList.remove("show"), 3000)
+        }
     }
 
     /**
@@ -226,11 +262,19 @@ class HomeController {
      * @returns {Promise<void>}
      */
     async addCharacter() {
-        const properties = []
-        const formInputs = document.querySelectorAll("input[type='text'], input[type='radio']:checked, textarea")
-        formInputs.forEach(input => properties.push(input.value))
-        const character = new Character(properties)
-        await this.service.addCharacter(character)
+        // clearTimeout(this.toastTimeout)
+        // const properties = []
+        // const formInputs = document.querySelectorAll("input[type='text'], input[type='radio']:checked, textarea")
+        // formInputs.forEach(input => properties.push(input.value))
+        // const character = new Character(properties)
+        // const response = await this.service.addCharacter(character)
+        // const message = (response.status != 201) ? await response.text() : null
+
+        // if (message == "Missing field(s)") {
+        //     toast.innerText = "Champ(s) manquant(s)"
+        //     toast.classList.add("show")
+        //     this.toastTimeout = setTimeout(() => toast.classList.remove("show"), 3000)
+        // }
     }
 
 
@@ -309,8 +353,8 @@ class HomeController {
      * @param {number} characterId
      * @returns {void}
      */
-    submitEditModal(characterId) {
-        this.editCharacter(characterId)
+    async submitEditModal(characterId) {
+        await this.editCharacter(characterId)
         this.closeModal("edit_modal")
         this.reloadCharactersList()
     }
@@ -361,8 +405,8 @@ class HomeController {
      * @param {number} characterId
      * @returns {void}
      */
-    submitDeleteModal(characterId) {
-        new CharacterService().deleteCharacter(characterId)
+    async submitDeleteModal(characterId) {
+        await this.service.deleteCharacter(characterId)
         this.closeModal("delete_modal")
         this.reloadCharactersList()
     }
@@ -383,22 +427,87 @@ class HomeController {
 
         this.overlay.classList.add("show")
         setTimeout(() => filterModal.classList.add("show"), 0)
-        // this.fillFilterModal()
+        this.fillFilterModal()
 
         this.overlay.addEventListener("click", this.handleOverlayClick)
 
         document.querySelector("#close_button")
                 .addEventListener("click", () => this.closeModal("filter_modal"))
 
-        // a#reset_link
+        document.querySelector("a#reset_link")
+                .addEventListener("click", () => this.resetFields())
 
-        // document.querySelector("#submit_button")
-        //         .addEventListener("click", () => this.submitFilterModal())
+        document.querySelector("#submit_button")
+                .addEventListener("click", () => this.submitFilterModal())
 
-        // document.querySelectorAll("input[type='text']")
-        //         .forEach(textInput => textInput.addEventListener("keyup", (event) => {
-        //             if (event.key == "Enter") this.submitFilterModal()
-        //         }))
+        document.querySelectorAll("input[type='text']")
+                .forEach(textInput => textInput.addEventListener("keyup", (event) => {
+                    if (event.key == "Enter") this.submitFilterModal()
+                }))
+        
+        document.querySelector("input[type='radio']#man")
+                .addEventListener("click", () => {
+                    document.querySelector("label[for='actor']").innerHTML = "Acteur :"
+                    document.querySelector("label[for='voice_actor']").innerHTML = "Doubleur :"
+                })
+        
+        document.querySelector("input[type='radio']#woman")
+                .addEventListener("click", () => {
+                    document.querySelector("label[for='actor']").innerHTML = "Actrice :"
+                    document.querySelector("label[for='voice_actor']").innerHTML = "Doubleuse :"
+                })
+    }
+
+    fillFilterModal() {
+        const filterModal = document.querySelector("div#filter_modal")
+
+        if (this.filters.first_name) filterModal.querySelector("input#first_name").value = this.filters.first_name
+        if (this.filters.last_name) filterModal.querySelector("input#last_name").value = this.filters.last_name
+        if (this.filters.gender == "M") filterModal.querySelector("input[type='radio']#man").checked = true
+        if (this.filters.gender == "F") filterModal.querySelector("input[type='radio']#woman").checked = true
+        if (this.filters.work) filterModal.querySelector("input#work").value = this.filters.work
+        if (this.filters.actor) filterModal.querySelector("input#actor").value = this.filters.actor
+        if (this.filters.voice_actor) filterModal.querySelector("input#voice_actor").value = this.filters.voice_actor
+        if (this.filters.comment) filterModal.querySelector("textarea#comment").value = this.filters.comment
+        if (this.filters.appreciation) {
+            filterModal.querySelectorAll("input[name='appreciation']")
+                       .item(this.filters.appreciation - 1).checked = true
+        }
+
+        if (this.filters.gender == "F") {
+            filterModal.querySelector("label[for='actor']").innerHTML = "Actrice :"
+            filterModal.querySelector("label[for='voice_actor']").innerHTML = "Doubleuse :"
+        }
+    }
+
+    /**
+     * Resets the fields of a modal form
+     * @returns {void}
+     */
+    resetFields() {
+        document.querySelectorAll(`input[type='text']`)
+                .forEach(textInput => textInput.value = "")
+        document.querySelectorAll(`input[type='radio']`)
+                .forEach(radioInput => radioInput.checked = false)
+        document.querySelector("label[for='actor']").innerHTML = "Acteur :"
+        document.querySelector("label[for='voice_actor']").innerHTML = "Doubleur :"
+    }
+
+    submitFilterModal() {
+        const checkedGenderInput = document.querySelector("input[name='gender']:checked")
+        const checkedAppreciationInput = document.querySelector("input[name='appreciation']:checked")
+
+        this.filters.first_name = document.querySelector("input#first_name").value
+        this.filters.last_name = document.querySelector("input#last_name").value
+        this.filters.gender = (checkedGenderInput) ? checkedGenderInput.value : ""
+        this.filters.work = document.querySelector("input#work").value
+        this.filters.actor = document.querySelector("input#actor").value
+        this.filters.voice_actor = document.querySelector("input#voice_actor").value
+        this.filters.comment = document.querySelector("input#comment").value
+        this.filters.appreciation = (checkedAppreciationInput) ? checkedAppreciationInput.value : ""
+
+        this.closeModal("filter_modal")
+        this.reloadCharactersList()
     }
 
 
@@ -413,17 +522,6 @@ class HomeController {
      */
     cloneTemplate(templateId) {
         return document.getElementById(templateId).content.cloneNode(true)
-    }
-
-    /**
-     * Resets the fields of a modal form
-     * @returns {void}
-     */
-    resetFields() {
-        document.querySelectorAll(`input[type='text'], textarea`)
-                .forEach(textInput => textInput.removeAttribute("value"))
-        document.querySelector(`input[name='gender']`).checked = true
-        document.querySelector(`input[name='appreciation']`).checked = true
     }
 
     /**
